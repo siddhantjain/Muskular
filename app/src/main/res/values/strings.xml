@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Muskular</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <style name="DefaultButtonText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#979797</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:shadowColor">#f9f9f9</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    <string name="title_activity_user_login">user_login</string>
+    <string name="title_activity_user_sign_up">user_sign_up</string>
+    <string name="title_activity_app_intro">app_intro</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_app_intro_temp">app_intro_temp</string>
+    <string name="title_activity_user_profile">user_profile</string>
+    <string name="profile_title">Tell Us About Yourself</string>
+    <string name="title_activity_plan_suggestor">plan_suggestor</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_activity_profile_getter">profile_getter</string>
+</resources>
