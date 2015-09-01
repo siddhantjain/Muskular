@@ -41,7 +41,7 @@
                 android:value="com.siddhantjain.muskular.welcome_screen" />
         </activity>
         <activity
-            android:name=".app_intro"
+            android:name=".AppIntroduction"
             android:label="@string/title_activity_app_intro"
             android:parentActivityName=".user_sign_up" >
             <meta-data
@@ -49,31 +49,13 @@
                 android:value="com.siddhantjain.muskular.user_sign_up" />
         </activity>
         <activity
-            android:name=".app_intro_temp"
-            android:label="@string/title_activity_app_intro_temp"
-            android:parentActivityName=".user_sign_up"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.siddhantjain.muskular.user_sign_up" />
-        </activity>
-        <activity
-            android:name=".user_profile"
-            android:label="@string/title_activity_user_profile"
-            android:parentActivityName=".app_intro_temp"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.siddhantjain.muskular.app_intro_temp" />
-        </activity>
-        <activity
             android:name=".plan_suggestor"
             android:label="@string/title_activity_plan_suggestor"
-            android:parentActivityName=".user_profile"
+            android:parentActivityName=".UserProfiler"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.siddhantjain.muskular.user_profile" />
+                android:value=".UserProfiler" />
         </activity>
         <activity
             android:name=".Dashboard"

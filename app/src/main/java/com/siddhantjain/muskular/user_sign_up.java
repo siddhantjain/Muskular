@@ -38,7 +38,7 @@ public class user_sign_up extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void app_intro_view(View view){
-        Intent intent = new Intent(this,app_intro.class);
+        Intent intent = new Intent(this,AppIntroduction.class);
         startActivity(intent);
     }
 }

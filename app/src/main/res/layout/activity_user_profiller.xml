@@ -4,7 +4,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
-    tools:context="com.siddhantjain.muskular.user_profile">
+    tools:context="com.siddhantjain.muskular.UserProfiler">
 
 
 </RelativeLayout>

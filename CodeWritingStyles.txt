@@ -1,0 +1,41 @@
+Android re-coding the app -> guidelines
+
+1.) Check for unhandled exceptions
+2.) Check for generic excceptions
+3.) Check if imports are fully qualified. import foo.* is not good. Should be import foo.Bar instead
+4.) In Javadoc comments describe what each and every class/method does with 3rd person descriptive verb. Example: /** Returns the correctly rounded positive square root of a double value. */
+
+5.) The scope of local variables should be kept to a minimum.Each variable should be declared in the innermost block that encloses all uses of the variable.
+/*field names*/
+6) Non-public, non-static field names start with m
+7) static field names start with s
+8) other fields start with a lower case letter
+9) public static final fields(Constants) are ALL_CAPS_WITH_UNDERSCORES
+
+10) Don't put an extra line for opening braces 
+11) Treat Acronyms are names
+Good -> XmlHttpRequest | Bad -> XMLHTTPRequests
+
+/*Naming conventions*/
+12) Class names are written in UpperCamelCase
+13) Class names are typically Noun or Noun Phrases
+14) Method names are written in lowerCamelCase
+15) Method names are typically verbs or verb phrases
+16) Constant names us CONSTANT_CASE. All upper and words separated by _
+17) Every constant is a static final field, but not all static final fields are constants
+18) non constant field names are written in lowerCamelCase. typically nounds or nounPhrases
+19) parameter names are written in lowerCamelCase. Avoid one character parameter names
+20) Local variable names are written in lowerCamelCase, and can be abbreviated more liberally than other types of names.
+
+21) However, one-character names should be avoided, except for temporary and looping variables.
+
+22) Even when final and immutable, local variables are not considered to be constants, and should not be styled as constants.
+23) Beginning with the prose form of the name:
+
+	i) Convert the phrase to plain ASCII and remove any apostrophes. 	For example, "Müller's algorithm" might become "Muellers 	algorithm".
+	ii) Divide this result into words, splitting on spaces and any 	remaining punctuation (typically hyphens).
+	Recommended: if any word already has a conventional camel-case 	appearance in common usage, split this into its constituent 	parts (e.g., "AdWords" becomes "ad words"). Note that a word 	such as "iOS" is not really in camel case per se; it defies any 	convention, so this recommendation does not apply.
+	iii) Now lowercase everything (including acronyms), then 	uppercase only the first character of:
+		... each word, to yield upper camel case, or
+		... each word except the first, to yield lower camel 		case
+	iv) Finally, join all the words into a single identifier.
