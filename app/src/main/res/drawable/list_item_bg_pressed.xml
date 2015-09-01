@@ -1,0 +1,7 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="@color/wallet_highlighted_text_holo_dark"
+        android:endColor="@color/wallet_highlighted_text_holo_dark"
+        android:angle="90" />
+</shape>
