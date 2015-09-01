@@ -7,6 +7,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <!--permissions-->
+        <uses-permission android:name="android.permission.INTERNET" />
+        <service android:name=".RssService" />
+
+        <!--activities-->
         <activity
             android:name=".welcome_screen"
             android:label="@string/app_name"
@@ -20,8 +25,8 @@
         <activity
             android:name=".user_login"
             android:label="@string/title_activity_user_login"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".welcome_screen" >
+            android:parentActivityName=".welcome_screen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.siddhantjain.muskular.welcome_screen" />
@@ -29,8 +34,8 @@
         <activity
             android:name=".user_sign_up"
             android:label="@string/title_activity_user_sign_up"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".welcome_screen" >
+            android:parentActivityName=".welcome_screen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.siddhantjain.muskular.welcome_screen" />
@@ -46,8 +51,8 @@
         <activity
             android:name=".app_intro_temp"
             android:label="@string/title_activity_app_intro_temp"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".user_sign_up" >
+            android:parentActivityName=".user_sign_up"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.siddhantjain.muskular.user_sign_up" />
@@ -55,8 +60,8 @@
         <activity
             android:name=".user_profile"
             android:label="@string/title_activity_user_profile"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".app_intro_temp" >
+            android:parentActivityName=".app_intro_temp"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.siddhantjain.muskular.app_intro_temp" />
@@ -64,8 +69,8 @@
         <activity
             android:name=".plan_suggestor"
             android:label="@string/title_activity_plan_suggestor"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".user_profile" >
+            android:parentActivityName=".user_profile"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.siddhantjain.muskular.user_profile" />
@@ -73,8 +78,8 @@
         <activity
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".user_login" >
+            android:parentActivityName=".user_login"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.siddhantjain.muskular.user_login" />
@@ -82,11 +87,35 @@
         <activity
             android:name=".profile_getter"
             android:label="@string/title_activity_profile_getter"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".user_sign_up" >
+            android:parentActivityName=".user_sign_up"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.siddhantjain.muskular.user_sign_up" />
+        </activity>
+        <activity
+            android:name=".Workout_Plan"
+            android:label="@string/title_activity_workout__plan"
+            android:parentActivityName=".Dashboard" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.siddhantjain.muskular.Dashboard" />
+        </activity>
+        <activity
+            android:name=".nutriotion_plan"
+            android:label="@string/title_activity_nutriotion_plan"
+            android:parentActivityName=".Dashboard" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.siddhantjain.muskular.Dashboard" />
+        </activity>
+        <activity
+            android:name=".diet_plan"
+            android:label="@string/title_activity_diet_plan"
+            android:parentActivityName=".Dashboard" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.siddhantjain.muskular.Dashboard" />
         </activity>
     </application>
 
