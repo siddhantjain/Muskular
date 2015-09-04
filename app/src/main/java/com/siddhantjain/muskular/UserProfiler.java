@@ -1,24 +1,24 @@
 package com.siddhantjain.muskular;
 
-import android.app.TabActivity;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class UserProfiler extends TabActivity {
+public class UserProfiler extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profiller);
+        setContentView(R.layout.activity_user_profiler);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_user_profiller, menu);
+        getMenuInflater().inflate(R.menu.menu_user_profiler, menu);
         return true;
     }
 
@@ -36,8 +36,8 @@ public class UserProfiler extends TabActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void plan_suggester(View view){
-        Intent intent = new Intent(this,profile_getter.class);
+    public void planGridActivityConnector(View view){
+        Intent intent = new Intent(this,PlanGrid.class);
         startActivity(intent);
     }
 }

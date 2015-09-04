@@ -7,19 +7,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class user_sign_up extends AppCompatActivity {
+public class UserLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent=getIntent();
-        setContentView(R.layout.activity_user_sign_up);
+        setContentView(R.layout.activity_user_login);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_user_sign_up, menu);
+        getMenuInflater().inflate(R.menu.menu_user_login, menu);
         return true;
     }
 
@@ -37,8 +37,8 @@ public class user_sign_up extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void app_intro_view(View view){
-        Intent intent = new Intent(this,AppIntroduction.class);
+    public void dashboard_view(View view){
+        Intent intent = new Intent(this,Dashboard.class);
         startActivity(intent);
     }
 }

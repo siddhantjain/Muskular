@@ -13,7 +13,7 @@
 
         <!--activities-->
         <activity
-            android:name=".welcome_screen"
+            android:name=".WelcomeScreen"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <intent-filter>
@@ -23,33 +23,33 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".user_login"
+            android:name=".UserLogin"
             android:label="@string/title_activity_user_login"
-            android:parentActivityName=".welcome_screen"
+            android:parentActivityName=".WelcomeScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.siddhantjain.muskular.welcome_screen" />
+                android:value=".WelcomeScreen" />
         </activity>
         <activity
-            android:name=".user_sign_up"
+            android:name=".UserSignUp"
             android:label="@string/title_activity_user_sign_up"
-            android:parentActivityName=".welcome_screen"
+            android:parentActivityName=".WelcomeScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.siddhantjain.muskular.welcome_screen" />
+                android:value=".WelcomeScreen" />
         </activity>
         <activity
             android:name=".AppIntroduction"
             android:label="@string/title_activity_app_intro"
-            android:parentActivityName=".user_sign_up" >
+            android:parentActivityName=".UserSignUp" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.siddhantjain.muskular.user_sign_up" />
+                android:value=".UserSignUp" />
         </activity>
         <activity
-            android:name=".plan_suggestor"
+            android:name=".PlanGrid"
             android:label="@string/title_activity_plan_suggestor"
             android:parentActivityName=".UserProfiler"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
@@ -60,23 +60,23 @@
         <activity
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard"
-            android:parentActivityName=".user_login"
+            android:parentActivityName=".UserLogin"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.siddhantjain.muskular.user_login" />
+                android:value=".UserLogin" />
         </activity>
         <activity
-            android:name=".profile_getter"
+            android:name=".UserProfiler"
             android:label="@string/title_activity_profile_getter"
-            android:parentActivityName=".user_sign_up"
+            android:parentActivityName=".UserSignUp"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.siddhantjain.muskular.user_sign_up" />
+                android:value=".UserSignUp" />
         </activity>
         <activity
-            android:name=".Workout_Plan"
+            android:name=".WorkoutPlanViewer"
             android:label="@string/title_activity_workout__plan"
             android:parentActivityName=".Dashboard" >
             <meta-data
@@ -84,7 +84,7 @@
                 android:value="com.siddhantjain.muskular.Dashboard" />
         </activity>
         <activity
-            android:name=".nutriotion_plan"
+            android:name=".NutritionPlanViewer"
             android:label="@string/title_activity_nutriotion_plan"
             android:parentActivityName=".Dashboard" >
             <meta-data
@@ -92,7 +92,7 @@
                 android:value="com.siddhantjain.muskular.Dashboard" />
         </activity>
         <activity
-            android:name=".diet_plan"
+            android:name=".DietPlanViewer"
             android:label="@string/title_activity_diet_plan"
             android:parentActivityName=".Dashboard" >
             <meta-data

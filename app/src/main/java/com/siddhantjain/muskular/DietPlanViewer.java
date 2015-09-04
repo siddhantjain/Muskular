@@ -1,24 +1,22 @@
 package com.siddhantjain.muskular;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-public class plan_suggestor extends AppCompatActivity {
+public class DietPlanViewer extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plan_suggestor);
+        setContentView(R.layout.activity_diet_plan_viewer);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_plan_suggestor, menu);
+        getMenuInflater().inflate(R.menu.menu_diet_plan_viewer, menu);
         return true;
     }
 
@@ -35,9 +33,5 @@ public class plan_suggestor extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-    public void update_profile(View view){
-        Intent intent = new Intent(this,Dashboard.class);
-        startActivity(intent);
     }
 }

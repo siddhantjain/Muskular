@@ -82,11 +82,11 @@ public class AppIntroduction extends FragmentActivity {
         public Fragment getItem(int position) {
             switch(position){
                 case 0:
-                    return new who_we_are_fragment();
+                    return new WhoWeAreFragment();
                 case 1:
-                    return new what_we_do_fragment();
+                    return new WhatWeDoFragment();
                 case 2:
-                    return new what_we_expect_fragment();
+                    return new WhatWeExpectFragment();
             }
             Fragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -151,7 +151,7 @@ public class AppIntroduction extends FragmentActivity {
     }
 
     public void userProfilerActivityConnector(View view){
-        Intent intent = new Intent(this,profile_getter.class);
+        Intent intent = new Intent(this,UserProfiler.class);
         startActivity(intent);
     }
 }

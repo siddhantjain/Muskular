@@ -53,6 +53,6 @@
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="title_activity_profile_getter">profile_getter</string>
     <string name="title_activity_workout__plan">Workout_Plan</string>
-    <string name="title_activity_nutriotion_plan">nutriotion_plan</string>
+    <string name="title_activity_nutriotion_plan">nutrition_plan</string>
     <string name="title_activity_diet_plan">diet_plan</string>
 </resources>
