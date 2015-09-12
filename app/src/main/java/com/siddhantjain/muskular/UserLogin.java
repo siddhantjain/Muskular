@@ -6,9 +6,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserLogin extends AppCompatActivity {
 
+    private EditText emailEditText;
+    private EditText passwordEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +45,48 @@ public class UserLogin extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void dashboard_view(View view){
-        Intent intent = new Intent(this,Dashboard.class);
-        startActivity(intent);
+        //Validation for email syntax, password syntax and authentication
+        String email;
+        String pass;
+        emailEditText = (EditText) findViewById(R.id.etUserName);
+        passwordEditText = (EditText) findViewById(R.id.etPass);
+        email = emailEditText.getText().toString();
+        pass = passwordEditText.getText().toString();
+        boolean isValidEmailFlag = isValidEmail(email);
+        if (!isValidEmail(email)) {
+            emailEditText.setError("Invalid Email");
+        }
+        if (!isValidPassword(pass)) {
+            passwordEditText.setError("Password should be at least 6 characters and non empty");
+        }
+        if(isValidEmail(email) && isValidPassword(pass)) {
+            if (!isUserAuthenticated(email, pass)) {
+                TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
+                bad_credentials.setVisibility(View.VISIBLE);
+            }
+            else {
+                Intent intent = new Intent(this, Dashboard.class);
+                startActivity(intent);
+            }
+        }
+    }
+
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.find();
+    }
+
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() > 6) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isUserAuthenticated(String email, String pass) {
+        //can change this function to return the error code and handle the error code accordingly
+        return true;
     }
 }
