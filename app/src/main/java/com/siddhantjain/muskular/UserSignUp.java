@@ -1,6 +1,7 @@
 package com.siddhantjain.muskular;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.siddhantjain.muskular.api.MuskAPI;
 import com.siddhantjain.muskular.models.UserAuth;
 import com.siddhantjain.muskular.models.UserAuthResponse;
 import com.siddhantjain.muskular.models.UserCreateRequest;
+import com.siddhantjain.muskular.utils.DataStore;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -108,6 +110,13 @@ public class UserSignUp extends AppCompatActivity {
                 @Override
                 public void onSuccess(UserAuth data) {
                     Log.v("CREATE USER RESPONSE - ", data.toString());
+                    SharedPreferences sharedPreferences = DataStore.getSharedPref(getApplicationContext());
+                    SharedPreferences.Editor SPEditor = sharedPreferences.edit();
+                    if(sharedPreferences.getString("user_id",null)==null){
+                        SPEditor.putString("user_id",data.getUserId());
+                        SPEditor.commit();
+                        Log.v("Shared Preferences",sharedPreferences.getString("user_id","no user id"));
+                    }
                     Intent intent = new Intent(UserSignUp.this, AppIntroduction.class);
                     startActivity(intent);
                 }

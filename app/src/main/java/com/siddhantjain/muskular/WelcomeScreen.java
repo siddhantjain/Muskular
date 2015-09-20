@@ -34,7 +34,8 @@ public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
         SharedPreferences sharedPreferences = DataStore.getSharedPref(getApplicationContext());
         String userId = sharedPreferences.getString("user_id",null);
         if(userId != null){
-
+            Intent intent = new Intent(this,Dashboard.class);
+            startActivity(intent);
         }
     }
 
