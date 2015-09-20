@@ -3,6 +3,7 @@ package com.siddhantjain.muskular;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -13,6 +14,8 @@ import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+
+import com.siddhantjain.muskular.utils.DataStore;
 
 import java.io.IOException;
 
@@ -28,7 +31,11 @@ public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
         mSurfaceView = (SurfaceView) findViewById(R.id.surface);
         videoHolder = mSurfaceView.getHolder();
         videoHolder.addCallback(this);
+        SharedPreferences sharedPreferences = DataStore.getSharedPref(getApplicationContext());
+        String userId = sharedPreferences.getString("user_id",null);
+        if(userId != null){
 
+        }
     }
 
     @Override

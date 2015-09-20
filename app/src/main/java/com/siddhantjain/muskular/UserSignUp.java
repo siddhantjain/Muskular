@@ -3,11 +3,19 @@ package com.siddhantjain.muskular;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.siddhantjain.muskular.api.APICallback;
+import com.siddhantjain.muskular.api.APIClient;
+import com.siddhantjain.muskular.api.MuskAPI;
+import com.siddhantjain.muskular.models.UserAuth;
+import com.siddhantjain.muskular.models.UserAuthResponse;
+import com.siddhantjain.muskular.models.UserCreateRequest;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -85,14 +93,33 @@ public class UserSignUp extends AppCompatActivity {
             rePasswordEditText.setError("The two passwords do not match");
         }
         if(isValidEmail(email) && isValidPassword(pass) && pass.equals(repass)) {
-            if (!isUserRegistered(email, pass)) {
-                TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
-                bad_credentials.setVisibility(View.VISIBLE);
-            }
-            else {
-                Intent intent = new Intent(this,AppIntroduction.class);
-                startActivity(intent);
-            }
+//            if (!isUserRegistered(email, pass)) {
+//                TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
+//                bad_credentials.setVisibility(View.VISIBLE);
+//            }
+            UserCreateRequest userCreateRequest = new UserCreateRequest();
+            userCreateRequest.setEmailId(email);
+            userCreateRequest.setPassword(pass);
+
+            UserAuthResponse userAuthResponse;
+//            APIClient apiClient = new APIClient();
+            MuskAPI APIGuy = APIClient.getAPIClient();
+            APIGuy.createUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
+                @Override
+                public void onSuccess(UserAuth data) {
+                    Log.v("CREATE USER RESPONSE - ", data.toString());
+                    Intent intent = new Intent(UserSignUp.this, AppIntroduction.class);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(String errorMessage) {
+                    Log.v("CREATE USER RESPONSE -", errorMessage);
+                }
+            });
+
+
+
         }
     }
 }

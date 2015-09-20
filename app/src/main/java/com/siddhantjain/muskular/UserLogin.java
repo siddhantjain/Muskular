@@ -3,14 +3,25 @@ package com.siddhantjain.muskular;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.siddhantjain.muskular.api.APICallback;
+import com.siddhantjain.muskular.api.APIClient;
+import com.siddhantjain.muskular.api.MuskAPI;
+import com.siddhantjain.muskular.models.UserAuth;
+import com.siddhantjain.muskular.models.UserAuthResponse;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class UserLogin extends AppCompatActivity {
 
@@ -65,7 +76,21 @@ public class UserLogin extends AppCompatActivity {
                 bad_credentials.setVisibility(View.VISIBLE);
             }
             else {
-                Intent intent = new Intent(this, Dashboard.class);
+                //Valid email and password comes here
+//                APIClient APIC = new APIClient();
+                MuskAPI APIGuy = APIClient.getAPIClient();
+                APIGuy.getUser("a1c4b6ab-8999-4bb7-8b2f-78177d4a1fea", new APICallback<UserAuthResponse, UserAuth>(this) {
+                            @Override
+                            public void onSuccess(UserAuth data) {
+                                Log.v("POST RESPONSE - ",data.toString());
+                            }
+
+                            @Override
+                            public void onFailure(String errorMessage) {
+                                Log.v("POST RESPONSE - ",errorMessage);
+                            }
+                        });
+                        Intent intent = new Intent(this, Dashboard.class);
                 startActivity(intent);
             }
         }
