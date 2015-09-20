@@ -1,18 +1,34 @@
 package com.siddhantjain.muskular;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
-public class WelcomeScreen extends AppCompatActivity {
+import java.io.IOException;
 
+public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
+    private MediaPlayer mp = null;
+    SurfaceView mSurfaceView=null;
+    SurfaceHolder videoHolder = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
+        mp= new MediaPlayer();
+        mSurfaceView = (SurfaceView) findViewById(R.id.surface);
+        videoHolder = mSurfaceView.getHolder();
+        videoHolder.addCallback(this);
+
     }
 
     @Override
@@ -45,4 +61,29 @@ public class WelcomeScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        mp.setDisplay(videoHolder);
+        Uri video = Uri.parse("android.resource://" + getPackageName() + "/"
+                + R.raw.welcomevideo);
+        Context context = getApplicationContext();
+        try {
+            mp.setDataSource(context, video);
+            mp.prepare();
+        }catch(IOException ie){
+            throw new RuntimeException(ie);
+        }
+        //Start video
+        mp.start();
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+
+    }
 }
