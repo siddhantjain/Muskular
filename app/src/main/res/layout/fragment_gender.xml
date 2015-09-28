@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text = "Choose your Gender"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="131dp"
+    android:textSize="20dp"
+    android:id="@+id/textView" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+        android:src = "@drawable/male_symbol"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:id="@+id/imgMale" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+        android:src = "@drawable/female_symbol"
+        android:layout_alignTop="@+id/imgMale"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:id="@+id/imgFemale" />
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:text = "MALE"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_alignTop="@+id/btnFemale"
+        android:layout_alignLeft="@+id/imgMale"
+        android:layout_alignStart="@+id/imgMale"
+        android:id="@+id/btnMale"/>
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text = "FEMALE"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_below="@+id/imgFemale"
+        android:layout_alignLeft="@+id/imgFemale"
+        android:layout_alignStart="@+id/imgFemale"
+        android:id="@+id/btnFemale" />
+
+
+</RelativeLayout>

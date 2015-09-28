@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="What's your level?"
+        android:textSize="20dp"
+        android:layout_above="@+id/imgBeginner"
+        android:layout_alignRight="@+id/imgAdvanced"
+        android:layout_alignEnd="@+id/imgAdvanced"
+        android:layout_marginBottom="46dp" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/thumb_beginner_male"
+        android:layout_alignTop="@+id/imgIntermediate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/imgBeginner" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/thumb_intermediate_male"
+        android:layout_alignTop="@+id/imgAdvanced"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imgIntermediate" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/thumb_advanced_male"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/imgAdvanced" />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Beginner"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_alignTop="@+id/btnIntermediate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/btnBeginner"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Intermediate"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_alignTop="@+id/btnAdvanced"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/btnIntermediate" />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Advanced"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_below="@+id/imgAdvanced"
+        android:layout_alignLeft="@+id/imgAdvanced"
+        android:layout_alignStart="@+id/imgAdvanced"
+        android:id="@+id/btnAdvanced" />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text = "All selected. Show me some plans."
+        android:onClick="planGridActivityConnector"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

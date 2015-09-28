@@ -1,18 +1,70 @@
 package com.siddhantjain.muskular;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.view.View.OnClickListener;
+import android.view.View;
 
-public class UserProfiler extends AppCompatActivity {
+public class UserProfiler extends FragmentActivity {
 
+    QuestionsPagerAdapter mQuestionsPagerAdapter;
+    ViewPager mViewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profiler);
+
+        Context context;
+        context = this;
+        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key),Context.MODE_PRIVATE);
+
+        mQuestionsPagerAdapter =  new QuestionsPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.questionsPager);
+        mViewPager.setAdapter(mQuestionsPagerAdapter);
+    }
+
+    public class QuestionsPagerAdapter extends FragmentPagerAdapter {
+        public QuestionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+            switch(i){
+                case 0:
+                    return new Gender();
+                case 1:
+                    return new Goal();
+                case 2:
+                    return new Proficiency();
+                default:
+                    return new Gender();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "Q: "+(position + 1);
+        }
     }
 
     @Override
@@ -37,6 +89,9 @@ public class UserProfiler extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void planGridActivityConnector(View view){
+        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key),Context.MODE_PRIVATE);
+        String user_gender = sharedPref.getString(getString(R.string.user_gender),"not found");
+        System.out.println(user_gender);
         Intent intent = new Intent(this,PlanGrid.class);
         startActivity(intent);
     }

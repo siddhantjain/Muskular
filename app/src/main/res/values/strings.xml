@@ -55,4 +55,11 @@
     <string name="title_activity_workout__plan">Workout_Plan</string>
     <string name="title_activity_nutriotion_plan">nutrition_plan</string>
     <string name="title_activity_diet_plan">diet_plan</string>
+    <string name="preference_file_key">"com.siddhantjain.muskular.user_profile</string>
+    <string name= "user_gender">user_gender</string>
+    <string name= "user_level">user_level</string>
+    <string name= "user_goal">user_goal</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
