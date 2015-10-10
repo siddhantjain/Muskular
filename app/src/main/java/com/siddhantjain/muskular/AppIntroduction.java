@@ -87,14 +87,9 @@ public class AppIntroduction extends FragmentActivity {
                     return new WhatWeDoFragment();
                 case 2:
                     return new WhatWeExpectFragment();
+                default:
+                    return new WhatWeExpectFragment();
             }
-            Fragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(PlaceholderFragment.ARG_SECTION_NUMBER,position + 1);
-            fragment.setArguments(args);
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return fragment;
         }
 
         @Override
@@ -115,38 +110,6 @@ public class AppIntroduction extends FragmentActivity {
                     return getString(R.string.title_section3).toUpperCase(l);
             }
             return null;
-        }
-    }
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_app_introduction, container, false);
-            return rootView;
         }
     }
 

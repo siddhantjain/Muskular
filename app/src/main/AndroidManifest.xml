@@ -64,7 +64,7 @@
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard"
             android:parentActivityName=".UserLogin"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".UserLogin" />
