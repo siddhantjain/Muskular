@@ -62,11 +62,13 @@ public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
     }
     public void user_sign_up(View view){
         mp.stop();
+        mp.reset();
         Intent intent = new Intent(this,UserSignUp.class);
         startActivity(intent);
     }
     public void user_login(View view){
         mp.stop();
+        mp.reset();
         Intent intent = new Intent(this,UserLogin.class);
         startActivity(intent);
     }
