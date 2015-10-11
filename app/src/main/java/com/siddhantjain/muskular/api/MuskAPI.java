@@ -19,4 +19,7 @@ public interface MuskAPI {
 
     @POST("/user/create/")
     void createUser(@Body UserCreateRequest uc,APICallback<UserAuthResponse,UserAuth> response);
+
+    @POST("/user/authenticate/")
+    void authenticateUser(@Body UserCreateRequest uc,APICallback<UserAuthResponse,UserAuth> response);
 }

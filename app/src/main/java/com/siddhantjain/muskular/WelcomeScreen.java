@@ -26,17 +26,18 @@ public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome_screen);
-        mp= new MediaPlayer();
-        mSurfaceView = (SurfaceView) findViewById(R.id.surface);
-        videoHolder = mSurfaceView.getHolder();
-        videoHolder.addCallback(this);
         SharedPreferences sharedPreferences = DataStore.getSharedPref(getApplicationContext());
         String userId = sharedPreferences.getString("user_id",null);
         if(userId != null){
             Intent intent = new Intent(this,Dashboard.class);
             startActivity(intent);
+            WelcomeScreen.this.finish();
         }
+        setContentView(R.layout.activity_welcome_screen);
+        mp= new MediaPlayer();
+        mSurfaceView = (SurfaceView) findViewById(R.id.surface);
+        videoHolder = mSurfaceView.getHolder();
+        videoHolder.addCallback(this);
     }
 
     @Override
@@ -75,6 +76,13 @@ public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        SharedPreferences sharedPreferences = DataStore.getSharedPref(getApplicationContext());
+        String userId = sharedPreferences.getString("user_id",null);
+        if(userId != null){
+            Intent intent = new Intent(this,Dashboard.class);
+            startActivity(intent);
+            WelcomeScreen.this.finish();
+        }
         mp.setDisplay(videoHolder);
         Uri video = Uri.parse("android.resource://" + getPackageName() + "/"
                 + R.raw.welcomevideo);

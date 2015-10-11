@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.siddhantjain.muskular.api.APICallback;
 import com.siddhantjain.muskular.api.APIClient;
@@ -95,16 +96,11 @@ public class UserSignUp extends AppCompatActivity {
             rePasswordEditText.setError("The two passwords do not match");
         }
         if(isValidEmail(email) && isValidPassword(pass) && pass.equals(repass)) {
-//            if (!isUserRegistered(email, pass)) {
-//                TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
-//                bad_credentials.setVisibility(View.VISIBLE);
-//            }
             UserCreateRequest userCreateRequest = new UserCreateRequest();
             userCreateRequest.setEmailId(email);
             userCreateRequest.setPassword(pass);
 
-            UserAuthResponse userAuthResponse;
-//            APIClient apiClient = new APIClient();
+
             MuskAPI APIGuy = APIClient.getAPIClient();
             APIGuy.createUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
                 @Override
@@ -114,16 +110,22 @@ public class UserSignUp extends AppCompatActivity {
                     SharedPreferences.Editor SPEditor = sharedPreferences.edit();
                     if(sharedPreferences.getString("user_id",null)==null){
                         SPEditor.putString("user_id",data.getUserId());
+                        SPEditor.putString("last_section_completed",data.getLastSectionCompleted());
                         SPEditor.commit();
                         Log.v("Shared Preferences",sharedPreferences.getString("user_id","no user id"));
                     }
                     Intent intent = new Intent(UserSignUp.this, AppIntroduction.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 }
 
                 @Override
                 public void onFailure(String errorMessage) {
                     Log.v("CREATE USER RESPONSE -", errorMessage);
+                    Toast.makeText(getApplicationContext(), errorMessage,
+                            Toast.LENGTH_LONG).show();
+                    TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
+                    bad_credentials.setVisibility(View.VISIBLE);
                 }
             });
 

@@ -1,6 +1,7 @@
 package com.siddhantjain.muskular;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,12 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.siddhantjain.muskular.api.APICallback;
 import com.siddhantjain.muskular.api.APIClient;
 import com.siddhantjain.muskular.api.MuskAPI;
 import com.siddhantjain.muskular.models.UserAuth;
 import com.siddhantjain.muskular.models.UserAuthResponse;
+import com.siddhantjain.muskular.models.UserCreateRequest;
+import com.siddhantjain.muskular.utils.DataStore;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -71,28 +75,35 @@ public class UserLogin extends AppCompatActivity {
             passwordEditText.setError("Password should be at least 6 characters and non empty");
         }
         if(isValidEmail(email) && isValidPassword(pass)) {
-            if (!isUserAuthenticated(email, pass)) {
-                TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
-                bad_credentials.setVisibility(View.VISIBLE);
-            }
-            else {
-                //Valid email and password comes here
-//                APIClient APIC = new APIClient();
-                MuskAPI APIGuy = APIClient.getAPIClient();
-                APIGuy.getUser("a1c4b6ab-8999-4bb7-8b2f-78177d4a1fea", new APICallback<UserAuthResponse, UserAuth>(this) {
-                            @Override
-                            public void onSuccess(UserAuth data) {
-                                Log.v("POST RESPONSE - ",data.toString());
-                            }
+            UserCreateRequest userCreateRequest = new UserCreateRequest();
+            userCreateRequest.setEmailId(email);
+            userCreateRequest.setPassword(pass);
+            MuskAPI APIGuy = APIClient.getAPIClient();
+            APIGuy.authenticateUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
+                @Override
+                public void onSuccess(UserAuth data) {
+                    Log.v("POST RESPONSE - ", data.toString());
+                    SharedPreferences sharedPreferences = DataStore.getSharedPref(getApplicationContext());
+                    SharedPreferences.Editor SPEditor = sharedPreferences.edit();
+                    if (sharedPreferences.getString("user_id", null) == null) {
+                        SPEditor.putString("user_id", data.getUserId());
+                        SPEditor.commit();
+                        Log.v("Shared Preferences", sharedPreferences.getString("user_id", "no user id"));
+                    }
+                    Intent intent = new Intent(UserLogin.this, Dashboard.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
 
-                            @Override
-                            public void onFailure(String errorMessage) {
-                                Log.v("POST RESPONSE - ",errorMessage);
-                            }
-                        });
-                        Intent intent = new Intent(this, Dashboard.class);
-                startActivity(intent);
-            }
+                @Override
+                public void onFailure(String errorMessage) {
+                    Log.v("POST RESPONSE - ", errorMessage);
+                    Toast.makeText(getApplicationContext(), errorMessage,
+                            Toast.LENGTH_LONG).show();
+                    TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
+                    bad_credentials.setVisibility(View.VISIBLE);
+                }
+            });
         }
     }
 
