@@ -94,6 +94,8 @@ public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
             throw new RuntimeException(ie);
         }
         //Start video
+        mp.setVolume(0,0);
+        mp.setLooping(true);
         mp.start();
     }
 
