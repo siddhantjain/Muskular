@@ -61,13 +61,5 @@
         android:layout_alignLeft="@+id/imgAdvanced"
         android:layout_alignStart="@+id/imgAdvanced"
         android:id="@+id/btnAdvanced" />
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text = "All selected. Show me some plans."
-        android:onClick="planGridActivityConnector"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
