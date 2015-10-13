@@ -115,7 +115,7 @@ public class UserLogin extends AppCompatActivity {
     }
 
     private boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() > 6) {
+        if (pass != null && pass.length() >= 6) {
             return true;
         }
         return false;
