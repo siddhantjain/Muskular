@@ -51,6 +51,8 @@ public class UserProfiler extends FragmentActivity {
                     return new Goal();
                 case 2:
                     return new Proficiency();
+                case 3:
+                    return new Biostats();
                 default:
                     return new Gender();
             }
@@ -58,7 +60,7 @@ public class UserProfiler extends FragmentActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override

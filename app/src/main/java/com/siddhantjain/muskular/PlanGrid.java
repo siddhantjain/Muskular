@@ -14,22 +14,6 @@ public class PlanGrid extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        /*temporary code to illustrate use of stored variables*/
-        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        String user_gender = sharedPref.getString(getString(R.string.user_gender), "not found");
-        String user_goal = sharedPref.getString(getString(R.string.user_gender),"not found");
-        String user_level = sharedPref.getString(getString(R.string.user_gender),"not found");
-        System.out.println("Gender: " + user_gender);
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast1 = Toast.makeText(this,user_gender,duration);
-        Toast toast2= Toast.makeText(this,user_goal,duration);
-        Toast toast3 = Toast.makeText(this,user_level,duration);
-
-        toast1.show();
-        toast2.show();
-        toast3.show();
         /* Insert code to get plans from database by sending user preferences*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_grid);
