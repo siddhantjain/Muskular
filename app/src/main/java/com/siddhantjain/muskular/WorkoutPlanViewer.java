@@ -1,13 +1,23 @@
 package com.siddhantjain.muskular;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.AssetManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.opencsv.CSVReader;
 
@@ -44,14 +54,36 @@ public class WorkoutPlanViewer extends AppCompatActivity {
                 exercise_name_list );
 
         lvExercise.setAdapter(arrayAdapterExercise);
+        lvExercise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                final AlertDialog alertDialog = new AlertDialog.Builder(WorkoutPlanViewer.this).create(); //Read Update
+                alertDialog.setTitle("Exercise Steps");
+                //TODO: SID to figure out how to find the exercise name from the item clicked
+                String exerciseSteps = getExerciseSteps("DUMMY");
+                alertDialog.setMessage(exerciseSteps);
+                alertDialog.show();  //<-- See This
+            }
+        });
     }
 
 
+
+    // TODO: 10/23/2015 AKI TO ADD SERVER CALL
     private int getDayOfThePlan(){
         //insert code to get the required date
         int day = 2;
         return day;
     }
+
+    //// TODO: 10/23/2015 AKI TO ADD SERVER CALL
+    private String getExerciseSteps(String ExerciseName){
+        //insert code to get the required date
+        String temporaryReturnVar = "Exercise Steps to be read from DB";
+        return temporaryReturnVar;
+    }
+
     public final List<List<String>> readCsv(Context context) {
         List<String[]> list_modified = new ArrayList<String[]>();
         List<String> exerciseList = new ArrayList<String>();
