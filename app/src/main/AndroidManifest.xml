@@ -53,11 +53,11 @@
         <activity
             android:name=".PlanGrid"
             android:label="@string/title_activity_plan_suggestor"
-            android:parentActivityName=".UserProfiler"
+            android:parentActivityName=".user.UserProfiler"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserProfiler" />
+                android:value=".user.UserProfiler" />
         </activity>
         <activity
             android:name=".Dashboard"
@@ -69,7 +69,7 @@
                 android:value=".UserLogin" />
         </activity>
         <activity
-            android:name=".UserProfiler"
+            android:name=".user.UserProfiler"
             android:label="@string/title_activity_profile_getter"
             android:parentActivityName=".UserSignUp"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >

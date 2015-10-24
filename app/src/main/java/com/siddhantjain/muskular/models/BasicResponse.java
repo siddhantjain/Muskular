@@ -14,4 +14,5 @@ import lombok.Setter;
 public abstract class BasicResponse {
     String responseCode;
     public abstract Object getData();
+    String errMsg;
 }

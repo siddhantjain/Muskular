@@ -3,6 +3,9 @@ package com.siddhantjain.muskular.api;
 import com.siddhantjain.muskular.models.UserAuth;
 import com.siddhantjain.muskular.models.UserAuthResponse;
 import com.siddhantjain.muskular.models.UserCreateRequest;
+import com.siddhantjain.muskular.models.UserProfilerRequest;
+import com.siddhantjain.muskular.models.UserProfilerResponse;
+import com.siddhantjain.muskular.models.UserProfilerResponseData;
 
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -22,4 +25,7 @@ public interface MuskAPI {
 
     @POST("/user/authenticate/")
     void authenticateUser(@Body UserCreateRequest uc,APICallback<UserAuthResponse,UserAuth> response);
+
+    @POST("/user/profile_add/{user_id}/")
+    void profileUser(@Path("user_id") String userid,@Body UserProfilerRequest userProfilerRequest,APICallback<UserProfilerResponse,UserProfilerResponseData> response);
 }

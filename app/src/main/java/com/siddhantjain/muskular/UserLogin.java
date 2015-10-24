@@ -23,10 +23,6 @@ import com.siddhantjain.muskular.utils.DataStore;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-
 public class UserLogin extends AppCompatActivity {
 
     private EditText emailEditText;
@@ -83,7 +79,7 @@ public class UserLogin extends AppCompatActivity {
                 @Override
                 public void onSuccess(UserAuth data) {
                     Log.v("POST RESPONSE - ", data.toString());
-                    SharedPreferences sharedPreferences = DataStore.getSharedPref(getApplicationContext());
+                    SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
                     SharedPreferences.Editor SPEditor = sharedPreferences.edit();
                     if (sharedPreferences.getString("user_id", null) == null) {
                         SPEditor.putString("user_id", data.getUserId());

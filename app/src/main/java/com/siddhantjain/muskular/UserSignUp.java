@@ -106,7 +106,7 @@ public class UserSignUp extends AppCompatActivity {
                 @Override
                 public void onSuccess(UserAuth data) {
                     Log.v("CREATE USER RESPONSE - ", data.toString());
-                    SharedPreferences sharedPreferences = DataStore.getSharedPref(getApplicationContext());
+                    SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
                     SharedPreferences.Editor SPEditor = sharedPreferences.edit();
                     if(sharedPreferences.getString("user_id",null)==null){
                         SPEditor.putString("user_id",data.getUserId());

@@ -1,4 +1,4 @@
-package com.siddhantjain.muskular;
+package com.siddhantjain.muskular.user;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.siddhantjain.muskular.R;
+import com.siddhantjain.muskular.utils.DataStore;
+
 /**
  * Created by siddhaja on 8/26/2015.
  */
@@ -26,7 +29,7 @@ public class Biostats extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_biostats, container, false);
-        final SharedPreferences sharedPref = getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        final SharedPreferences sharedPref = DataStore.getUserProfileStore(getActivity());
         final SharedPreferences.Editor editor = sharedPref.edit();
         readAndSetBioStats(rootView, editor);
         return rootView;
@@ -95,7 +98,7 @@ public class Biostats extends Fragment {
 
             public void onStopTrackingTouch(SeekBar seekBar) {
                 ageTextValue.setText(String.valueOf(progressChanged));
-                editor.putString(getString(R.string.user_age), String.valueOf(progressChanged));
+                editor.putString(getString(R.string.user_yob), String.valueOf(progressChanged));
                 editor.commit();
             }
         });

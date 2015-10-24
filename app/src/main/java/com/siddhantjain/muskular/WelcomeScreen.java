@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +24,7 @@ public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences sharedPreferences = DataStore.getSharedPref(getApplicationContext());
+        SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
         String userId = sharedPreferences.getString("user_id",null);
         if(userId != null){
             Intent intent = new Intent(this,Dashboard.class);
@@ -76,7 +74,7 @@ public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        SharedPreferences sharedPreferences = DataStore.getSharedPref(getApplicationContext());
+        SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
         String userId = sharedPreferences.getString("user_id",null);
         if(userId != null){
             Intent intent = new Intent(this,Dashboard.class);

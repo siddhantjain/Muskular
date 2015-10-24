@@ -83,8 +83,15 @@ public abstract class APICallback<T,E> implements Callback<T> {
         if (!basicResponse.getResponseCode().equalsIgnoreCase(RESPONSE_CODE_SUCCESS)){
             //Map the response code to an error code
 //            String errorMessage = Utils.getStringResource(_context, "response_code_" + basicResponse.getResponseCode());
-            String errorMessage = null;
-            errorMessage = (errorMessage == null)? "Unexpected error" : errorMessage;
+            String errorMessage;
+            try {
+                errorMessage = basicResponse.getErrMsg();
+            }catch (Exception e){
+                errorMessage = null;
+                Log.v("RESPONSE ERROR EXCPTN",e.getMessage());
+            }
+            Log.v("RESPONSE ERROR MSG - ",errorMessage);
+            errorMessage = (errorMessage == null || errorMessage.equalsIgnoreCase(""))? "Unexpected error" : errorMessage;
             onFailure(errorMessage);
 
             return;

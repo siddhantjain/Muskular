@@ -1,4 +1,4 @@
-package com.siddhantjain.muskular;
+package com.siddhantjain.muskular.user;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.siddhantjain.muskular.R;
+import com.siddhantjain.muskular.utils.DataStore;
 
 /**
  * Created by siddhaja on 8/26/2015.
@@ -28,7 +31,7 @@ public class Gender extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        SharedPreferences sharedPref = getActivity().getSharedPreferences(getString(R.string.preference_file_key),Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = DataStore.getUserProfileStore(getActivity());
         SharedPreferences.Editor editor = sharedPref.edit();
         switch (v.getId()) {
             case R.id.btnMale:
