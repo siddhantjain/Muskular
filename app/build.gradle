@@ -27,5 +27,5 @@ dependencies {
     provided 'org.projectlombok:lombok:1.12.6'
     compile 'com.google.code.gson:gson:2.3'
     //    compile 'org.parceler:parceler:0.2.13'
-    compile files('/Users/akash.jatangi/Documents/Muscle_Mania/Android/Muskular/libs/opencsv-3.5.jar')
+    compile 'com.opencsv:opencsv:3.5'
 }
