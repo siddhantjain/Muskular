@@ -1,41 +1,60 @@
 package com.siddhantjain.muskular;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.siddhantjain.muskular.utils.DataStore;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
-    private MediaPlayer mp = null;
-    SurfaceView mSurfaceView=null;
-    SurfaceHolder videoHolder = null;
+public class WelcomeScreen extends Activity{
+    AnimationDrawable welcomeAnimation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
-        String userId = sharedPreferences.getString("user_id",null);
+        String userId = sharedPreferences.getString("user_id", null);
         if(userId != null){
             Intent intent = new Intent(this,Dashboard.class);
             startActivity(intent);
             WelcomeScreen.this.finish();
         }
         setContentView(R.layout.activity_welcome_screen);
-        mp= new MediaPlayer();
-        mSurfaceView = (SurfaceView) findViewById(R.id.surface);
-        videoHolder = mSurfaceView.getHolder();
-        videoHolder.addCallback(this);
+
+        ImageView welcomeBgImage = (ImageView) findViewById(R.id.ivBackground);
+        welcomeBgImage.setBackgroundResource(R.drawable.splash_animation);
+        welcomeAnimation = (AnimationDrawable) welcomeBgImage.getBackground();
+        welcomeAnimation.setEnterFadeDuration(1000);
+        welcomeAnimation.setExitFadeDuration(1000);
+        welcomeAnimation.start();
     }
 
     @Override
@@ -60,50 +79,11 @@ public class WelcomeScreen extends Activity implements SurfaceHolder.Callback {
         return super.onOptionsItemSelected(item);
     }
     public void user_sign_up(View view){
-        mp.stop();
-        mp.reset();
         Intent intent = new Intent(this,UserSignUp.class);
         startActivity(intent);
     }
     public void user_login(View view){
-        mp.stop();
-        mp.reset();
         Intent intent = new Intent(this,UserLogin.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
-        String userId = sharedPreferences.getString("user_id",null);
-        if(userId != null){
-            Intent intent = new Intent(this,Dashboard.class);
-            startActivity(intent);
-            WelcomeScreen.this.finish();
-        }
-        mp.setDisplay(videoHolder);
-        Uri video = Uri.parse("android.resource://" + getPackageName() + "/"
-                + R.raw.welcomevideo);
-        Context context = getApplicationContext();
-        try {
-            mp.setDataSource(context, video);
-            mp.prepare();
-        }catch(IOException ie){
-            throw new RuntimeException(ie);
-        }
-        //Start video
-        mp.setVolume(0,0);
-        mp.setLooping(true);
-        mp.start();
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-    }
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
-
     }
 }
