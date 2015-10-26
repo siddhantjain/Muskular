@@ -4,43 +4,153 @@
     tools:context=".welcome_screen"
     android:id="@+id/rlRoot"
     >
-
-
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:adjustViewBounds="true"
         android:id = "@+id/ivBackground"/>
-    <Button
-        android:id="@+id/btnSignUp"
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="@string/sign_up"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:background="@drawable/button_welcome_screen"
-        android:alpha="0.25"
-        android:onClick="user_sign_up"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="3dp"
-        android:layout_alignLeft="@+id/btnSingIn"
-        android:layout_alignStart="@+id/btnSingIn" />
+        android:id="@+id/frameLayout"
+        android:layout_alignParentBottom="true">
 
-    <Button
-        android:id="@+id/btnSingIn"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_welcome_screen"
-        android:alpha="0.25"
-        android:text="@string/sign_in"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:onClick="user_login"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="3dp"
-        android:layout_above="@+id/btnSignUp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="bottom"
+            android:id = "@+id/llSignUp"
+            android:background="@drawable/background_sign_up_box"
+            android:weightSum="2"
+            android:alpha="0.95"
+            >
+            <EditText
+                android:id="@+id/etUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_default_bg"
+                android:layout_marginTop="0dp"
+                android:padding="10dp"
+                android:hint="Email"
+                android:textColorHint="#bbbbbb"
+                android:drawableLeft="@drawable/user"/>
+            <EditText
+                android:id="@+id/etPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bottom_bg"
+                android:layout_marginTop="0dp"
+                android:padding="10dp"
+                android:hint="Password"
+                android:textColorHint="#bbbbbb"
+                android:password="true"
+                android:drawableLeft="@drawable/password"/>
+            <EditText
+                android:id="@+id/etRePass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bottom_bg"
+                android:layout_marginTop="0dp"
+                android:padding="10dp"
+                android:hint="Re-enter Password"
+                android:textColorHint="#bbbbbb"
+                android:password="true"
+                android:drawableLeft="@drawable/password"/>
+            <Button
+                android:id="@+id/btnJoinUs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="24dp"
+                android:text="Join Us"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_sign_up_box"
+                android:onClick="appIntroductionActivityConnector"
+                android:layout_weight="0.5"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="bottom"
+            android:id = "@+id/llSignIn"
+            android:background="@drawable/background_sign_up_box"
+            android:weightSum="2"
+            android:alpha="0.95"
+            >
+            <EditText
+                android:id="@+id/etUserName_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_default_bg"
+                android:layout_marginTop="0dp"
+                android:padding="10dp"
+                android:hint="Email"
+                android:textColorHint="#bbbbbb"
+                android:drawableLeft="@drawable/user"/>
+            <EditText
+                android:id="@+id/etPass_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bottom_bg"
+                android:layout_marginTop="0dp"
+                android:padding="10dp"
+                android:hint="Password"
+                android:textColorHint="#bbbbbb"
+                android:password="true"
+                android:drawableLeft="@drawable/password"/>
+            <Button
+                android:id="@+id/btnLogIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="24dp"
+                android:text="Log In"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_sign_up_box"
+                android:onClick="dashboard_view"
+                android:layout_weight="0.5"
+                />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:visibility="visible"
+            android:id="@+id/llOrigButtonStack">
 
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/sign_up"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:background="@drawable/button_welcome_screen"
+                android:alpha="0.25"
+                android:onClick="user_sign_up"
+                android:layout_above="@+id/btnSignIn"
+                />
+
+            <Button
+                android:id="@+id/btnSignIn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_welcome_screen"
+                android:alpha="0.25"
+                android:text="@string/sign_in"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:onClick="user_login"
+                />
+        </LinearLayout>
+    </FrameLayout>
 </RelativeLayout>

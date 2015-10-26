@@ -15,6 +15,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,9 +24,20 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.siddhantjain.muskular.api.APICallback;
+import com.siddhantjain.muskular.api.APIClient;
+import com.siddhantjain.muskular.api.MuskAPI;
+import com.siddhantjain.muskular.models.UserAuth;
+import com.siddhantjain.muskular.models.UserAuthResponse;
+import com.siddhantjain.muskular.models.UserCreateRequest;
 import com.siddhantjain.muskular.utils.DataStore;
 
 import java.io.IOException;
@@ -34,9 +46,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WelcomeScreen extends Activity{
     AnimationDrawable welcomeAnimation;
+    private EditText emailEditText;
+    private EditText passwordEditText;
+    private EditText rePasswordEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,11 +96,146 @@ public class WelcomeScreen extends Activity{
         return super.onOptionsItemSelected(item);
     }
     public void user_sign_up(View view){
-        Intent intent = new Intent(this,UserSignUp.class);
-        startActivity(intent);
+        LinearLayout signUpLayout = (LinearLayout) findViewById(R.id.llSignUp);
+        signUpLayout.setVisibility(View.VISIBLE);
+        LinearLayout origButtonLayout = (LinearLayout) findViewById(R.id.llOrigButtonStack);
+        origButtonLayout.setVisibility(View.INVISIBLE);
     }
     public void user_login(View view){
-        Intent intent = new Intent(this,UserLogin.class);
-        startActivity(intent);
+        LinearLayout signInLayout = (LinearLayout) findViewById(R.id.llSignIn);
+        signInLayout.setVisibility(View.VISIBLE);
+        LinearLayout origButtonLayout = (LinearLayout) findViewById(R.id.llOrigButtonStack);
+        origButtonLayout.setVisibility(View.INVISIBLE);
+    }
+
+    public void dashboard_view(View view){
+        //Validation for email syntax, password syntax and authentication
+        System.out.println("Entered dashboard view");
+        String email;
+        String pass;
+        emailEditText = (EditText) findViewById(R.id.etUserName_login);
+        passwordEditText = (EditText) findViewById(R.id.etPass_login);
+        email = emailEditText.getText().toString();
+        pass = passwordEditText.getText().toString();
+        boolean isValidEmailFlag = isValidEmail(email);
+        if (!isValidEmail(email)) {
+            emailEditText.setError("Invalid Email");
+        }
+        if (!isValidPassword(pass)) {
+            passwordEditText.setError("Password should be at least 6 characters and non empty");
+        }
+        if(isValidEmail(email) && isValidPassword(pass)) {
+            UserCreateRequest userCreateRequest = new UserCreateRequest();
+            userCreateRequest.setEmailId(email);
+            userCreateRequest.setPassword(pass);
+            MuskAPI APIGuy = APIClient.getAPIClient();
+            //temporary code. Remove after api calls are from server
+            Intent intent = new Intent(WelcomeScreen.this, Dashboard.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            //end here
+            APIGuy.authenticateUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
+                @Override
+                public void onSuccess(UserAuth data) {
+                    Log.v("POST RESPONSE - ", data.toString());
+                    SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
+                    SharedPreferences.Editor SPEditor = sharedPreferences.edit();
+                    if (sharedPreferences.getString("user_id", null) == null) {
+                        SPEditor.putString("user_id", data.getUserId());
+                        SPEditor.commit();
+                        Log.v("Shared Preferences", sharedPreferences.getString("user_id", "no user id"));
+                    }
+                    Intent intent = new Intent(WelcomeScreen.this, Dashboard.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(String errorMessage) {
+                    Log.v("POST RESPONSE - ", errorMessage);
+                    Toast.makeText(getApplicationContext(), errorMessage,
+                            Toast.LENGTH_LONG).show();
+                   // TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
+                   // bad_credentials.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+    }
+
+
+    public void appIntroductionActivityConnector(View view){
+        String email,pass,repass;
+        emailEditText = (EditText) findViewById(R.id.etUserName);
+        passwordEditText = (EditText) findViewById(R.id.etPass);
+        rePasswordEditText = (EditText) findViewById(R.id.etRePass);
+
+        email = emailEditText.getText().toString();
+        pass = passwordEditText.getText().toString();
+        repass = rePasswordEditText.getText().toString();
+
+        boolean isValidEmailFlag = isValidEmail(email);
+        if (!isValidEmail(email)) {
+            emailEditText.setError("Invalid Email");
+        }
+        if (!isValidPassword(pass)) {
+            passwordEditText.setError("Password should be at least 6 characters and non empty");
+        }
+        if (!isValidPassword(repass)) {
+            rePasswordEditText.setError("Password should be at least 6 characters and non empty");
+        }
+        if(!pass.equals(repass)){
+            rePasswordEditText.setError("The two passwords do not match");
+        }
+        if(isValidEmail(email) && isValidPassword(pass) && pass.equals(repass)) {
+            UserCreateRequest userCreateRequest = new UserCreateRequest();
+            userCreateRequest.setEmailId(email);
+            userCreateRequest.setPassword(pass);
+            MuskAPI APIGuy = APIClient.getAPIClient();
+            //Temporary code. Remove once API calls are to server
+            Intent intent = new Intent(WelcomeScreen.this, AppIntroduction.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            //code ends here
+            APIGuy.createUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
+                @Override
+                public void onSuccess(UserAuth data) {
+                    Log.v("CREATE USER RESPONSE - ", data.toString());
+                    SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
+                    SharedPreferences.Editor SPEditor = sharedPreferences.edit();
+                    if (sharedPreferences.getString("user_id", null) == null) {
+                        SPEditor.putString("user_id", data.getUserId());
+                        SPEditor.putString("last_section_completed", data.getLastSectionCompleted());
+                        SPEditor.commit();
+                        Log.v("Shared Preferences", sharedPreferences.getString("user_id", "no user id"));
+                    }
+                    Intent intent = new Intent(WelcomeScreen.this, AppIntroduction.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(String errorMessage) {
+                    Log.v("CREATE USER RESPONSE -", errorMessage);
+                    Toast.makeText(getApplicationContext(), errorMessage,
+                            Toast.LENGTH_LONG).show();
+                   // TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
+                  //  bad_credentials.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+    }
+
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.find();
+    }
+
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() >= 6) {
+            return true;
+        }
+        return false;
     }
 }

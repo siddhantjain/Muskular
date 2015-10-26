@@ -23,32 +23,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UserLogin"
-            android:label="@string/title_activity_user_login"
-            android:noHistory="true"
-            android:parentActivityName=".WelcomeScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".WelcomeScreen" />
-        </activity>
-        <activity
-            android:name=".UserSignUp"
-            android:label="@string/title_activity_user_sign_up"
-            android:noHistory="true"
-            android:parentActivityName=".WelcomeScreen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".WelcomeScreen" />
-        </activity>
-        <activity
             android:name=".AppIntroduction"
             android:label="@string/title_activity_app_intro"
-            android:parentActivityName=".UserSignUp" >
+            android:parentActivityName=".WelcomeScreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserSignUp" />
+                android:value=".WelcomeScreen" />
         </activity>
         <activity
             android:name=".PlanGrid"
@@ -62,20 +42,20 @@
         <activity
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard"
-            android:parentActivityName=".UserLogin"
+            android:parentActivityName=".WelcomeScreen"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserLogin" />
+                android:value=".WelcomeScreen" />
         </activity>
         <activity
             android:name=".user.UserProfiler"
             android:label="@string/title_activity_profile_getter"
-            android:parentActivityName=".UserSignUp"
+            android:parentActivityName=".WelcomeScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserSignUp" />
+                android:value=".WelcomeScreen" />
         </activity>
         <activity
             android:name=".WorkoutPlanViewer"

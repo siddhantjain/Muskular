@@ -141,8 +141,8 @@ public class UserProfiler extends FragmentActivity {
                     Log.v("USER PROFILER RESPONSE", errorMessage);
                     Toast.makeText(getApplicationContext(), errorMessage,
                             Toast.LENGTH_LONG).show();
-                    TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
-                    bad_credentials.setVisibility(View.VISIBLE);
+                    //TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
+                   // bad_credentials.setVisibility(View.VISIBLE);
                 }
             });
             Intent intent = new Intent(this,PlanGrid.class);
