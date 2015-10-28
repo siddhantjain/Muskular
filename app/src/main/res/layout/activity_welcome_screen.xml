@@ -27,6 +27,13 @@
             android:weightSum="2"
             android:alpha="0.95"
             >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvSignUpFailureMessage"
+                android:text="@string/sign_up_failure"
+                android:textColor="@color/bad_credentials"
+                android:visibility="invisible"/>
             <EditText
                 android:id="@+id/etUserName"
                 android:layout_width="match_parent"
@@ -83,6 +90,13 @@
             android:weightSum="2"
             android:alpha="0.95"
             >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvBadCredentialsMessage"
+                android:text="@string/bad_credentials"
+                android:textColor="@color/bad_credentials"
+                android:visibility="invisible"/>
             <EditText
                 android:id="@+id/etUserName_login"
                 android:layout_width="match_parent"

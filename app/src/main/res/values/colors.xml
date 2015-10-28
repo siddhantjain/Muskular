@@ -6,4 +6,7 @@
     <color name="rounded_container_border">#3b3f44</color>
     <color name="light_gray_header_color">#646663</color>
 
+    <!--Welcome Screen colors-->
+    <color name = "bad_credentials">#FF0000</color>
+
 </resources>

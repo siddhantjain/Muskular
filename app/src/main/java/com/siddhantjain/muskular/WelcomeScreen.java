@@ -129,11 +129,13 @@ public class WelcomeScreen extends Activity{
             userCreateRequest.setEmailId(email);
             userCreateRequest.setPassword(pass);
             MuskAPI APIGuy = APIClient.getAPIClient();
+            /*
             //temporary code. Remove after api calls are from server
             Intent intent = new Intent(WelcomeScreen.this, Dashboard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             //end here
+            */
             APIGuy.authenticateUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
                 @Override
                 public void onSuccess(UserAuth data) {
@@ -155,8 +157,8 @@ public class WelcomeScreen extends Activity{
                     Log.v("POST RESPONSE - ", errorMessage);
                     Toast.makeText(getApplicationContext(), errorMessage,
                             Toast.LENGTH_LONG).show();
-                   // TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
-                   // bad_credentials.setVisibility(View.VISIBLE);
+                   TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
+                   bad_credentials.setVisibility(View.VISIBLE);
                 }
             });
         }
@@ -191,11 +193,14 @@ public class WelcomeScreen extends Activity{
             userCreateRequest.setEmailId(email);
             userCreateRequest.setPassword(pass);
             MuskAPI APIGuy = APIClient.getAPIClient();
-            //Temporary code. Remove once API calls are to server
+
+            /*
+            // Temporary code. Remove once API calls are to server
             Intent intent = new Intent(WelcomeScreen.this, AppIntroduction.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             //code ends here
+            */
             APIGuy.createUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
                 @Override
                 public void onSuccess(UserAuth data) {
@@ -218,8 +223,15 @@ public class WelcomeScreen extends Activity{
                     Log.v("CREATE USER RESPONSE -", errorMessage);
                     Toast.makeText(getApplicationContext(), errorMessage,
                             Toast.LENGTH_LONG).show();
-                   // TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
-                  //  bad_credentials.setVisibility(View.VISIBLE);
+                   TextView sign_up_failure_message = (TextView) findViewById(R.id.tvSignUpFailureMessage);
+                    sign_up_failure_message.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onNetworkFailure() {
+                    System.out.println("Before");
+                    super.onNetworkFailure();
+                    System.out.println("After");
                 }
             });
         }
