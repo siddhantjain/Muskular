@@ -1,34 +1,17 @@
 package com.siddhantjain.muskular;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
-import android.media.Image;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,12 +23,6 @@ import com.siddhantjain.muskular.models.UserAuthResponse;
 import com.siddhantjain.muskular.models.UserCreateRequest;
 import com.siddhantjain.muskular.utils.DataStore;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -129,13 +106,13 @@ public class WelcomeScreen extends Activity{
             userCreateRequest.setEmailId(email);
             userCreateRequest.setPassword(pass);
             MuskAPI APIGuy = APIClient.getAPIClient();
-            /*
+            ///*
             //temporary code. Remove after api calls are from server
             Intent intent = new Intent(WelcomeScreen.this, Dashboard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             //end here
-            */
+            //*/
             APIGuy.authenticateUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
                 @Override
                 public void onSuccess(UserAuth data) {
@@ -165,7 +142,7 @@ public class WelcomeScreen extends Activity{
     }
 
 
-    public void appIntroductionActivityConnector(View view){
+    public void userProfilerConnector(View view){
         String email,pass,repass;
         emailEditText = (EditText) findViewById(R.id.etUserName);
         passwordEditText = (EditText) findViewById(R.id.etPass);
@@ -194,13 +171,13 @@ public class WelcomeScreen extends Activity{
             userCreateRequest.setPassword(pass);
             MuskAPI APIGuy = APIClient.getAPIClient();
 
-            /*
+            ///*
             // Temporary code. Remove once API calls are to server
-            Intent intent = new Intent(WelcomeScreen.this, AppIntroduction.class);
+            Intent intent = new Intent(WelcomeScreen.this, UserProfilerConnector.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             //code ends here
-            */
+            //*/
             APIGuy.createUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
                 @Override
                 public void onSuccess(UserAuth data) {
@@ -213,7 +190,7 @@ public class WelcomeScreen extends Activity{
                         SPEditor.commit();
                         Log.v("Shared Preferences", sharedPreferences.getString("user_id", "no user id"));
                     }
-                    Intent intent = new Intent(WelcomeScreen.this, AppIntroduction.class);
+                    Intent intent = new Intent(WelcomeScreen.this, UserProfilerConnector.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 }

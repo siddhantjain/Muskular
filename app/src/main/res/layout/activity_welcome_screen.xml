@@ -75,7 +75,7 @@
                 android:text="Join Us"
                 android:textColor="#ffffff"
                 android:background="@drawable/button_sign_up_box"
-                android:onClick="appIntroductionActivityConnector"
+                android:onClick="userProfilerConnector"
                 android:layout_weight="0.5"
                 />
         </LinearLayout>

@@ -23,14 +23,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AppIntroduction"
-            android:label="@string/title_activity_app_intro"
-            android:parentActivityName=".WelcomeScreen" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".WelcomeScreen" />
-        </activity>
-        <activity
             android:name=".PlanGrid"
             android:label="@string/title_activity_plan_suggestor"
             android:parentActivityName=".user.UserProfiler"
@@ -50,6 +42,15 @@
         </activity>
         <activity
             android:name=".user.UserProfiler"
+            android:label="@string/title_activity_profile_getter"
+            android:parentActivityName=".WelcomeScreen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".WelcomeScreen" />
+        </activity>
+        <activity
+            android:name=".UserProfilerConnector"
             android:label="@string/title_activity_profile_getter"
             android:parentActivityName=".WelcomeScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >

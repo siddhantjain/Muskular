@@ -71,6 +71,8 @@
     <string name="bad_credentials">User name and password combination do not match our records. Please try again?</string>
     <string name="sign_up_failure">We couldn\'t sign you up right now. Give our servers some time and try again?</string>
 
+    <!-- User Profiler strings-->
+    <string name = "allow_profiling">Sure. Let\'s get started.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
