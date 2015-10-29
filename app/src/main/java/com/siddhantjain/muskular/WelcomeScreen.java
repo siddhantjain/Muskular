@@ -3,6 +3,7 @@ package com.siddhantjain.muskular;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,8 @@ public class WelcomeScreen extends Activity{
     private EditText emailEditText;
     private EditText passwordEditText;
     private EditText rePasswordEditText;
+    private TextView signInTextView;
+    private TextView signUpTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,12 @@ public class WelcomeScreen extends Activity{
             WelcomeScreen.this.finish();
         }
         setContentView(R.layout.activity_welcome_screen);
+
+        Typeface helvetica = Typeface.createFromAsset(getAssets(), "fonts/GeosansLight.ttf");
+        signUpTextView = (TextView) findViewById(R.id.tvSignUp);
+        signInTextView = (TextView) findViewById(R.id.tvSignIn);
+        signUpTextView.setTypeface(helvetica);
+        signInTextView.setTypeface(helvetica);
 
         ImageView welcomeBgImage = (ImageView) findViewById(R.id.ivBackground);
         welcomeBgImage.setBackgroundResource(R.drawable.splash_animation);

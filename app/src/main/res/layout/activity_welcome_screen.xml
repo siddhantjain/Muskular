@@ -77,6 +77,8 @@
                 android:background="@drawable/button_sign_up_box"
                 android:onClick="userProfilerConnector"
                 android:layout_weight="0.5"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 />
         </LinearLayout>
         <LinearLayout
@@ -129,6 +131,8 @@
                 android:background="@drawable/button_sign_up_box"
                 android:onClick="dashboard_view"
                 android:layout_weight="0.5"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
                 />
         </LinearLayout>
 
@@ -139,32 +143,69 @@
             android:layout_gravity="bottom"
             android:visibility="visible"
             android:id="@+id/llOrigButtonStack">
-
-            <Button
-                android:id="@+id/btnSignUp"
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/sign_up"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:background="@drawable/button_welcome_screen"
-                android:alpha="0.25"
-                android:onClick="user_sign_up"
-                android:layout_above="@+id/btnSignIn"
-                />
+                android:id="@+id/flWelcomeSignIn"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp">
+                <Button
+                    android:id="@+id/btnSignUp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="20sp"
+                    android:textColor="#000000"
+                    android:background="@drawable/button_welcome_screen"
+                    android:alpha="0.2"
+                    android:onClick="user_sign_up"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="45dp"
+                    android:layout_above="@+id/btnSignIn"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_up"
+                    android:layout_gravity="center"
+                    android:textSize="25sp"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="45dp"
+                    android:id = "@+id/tvSignIn"
+                    />
+            </FrameLayout>
 
-            <Button
-                android:id="@+id/btnSignIn"
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_welcome_screen"
-                android:alpha="0.25"
-                android:text="@string/sign_in"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:onClick="user_login"
-                />
+                android:id="@+id/flWelcomeSignUp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp">
+                <Button
+                    android:id="@+id/btnSignIn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_welcome_screen"
+                    android:alpha="0.25"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="45dp"
+                    android:textSize="20sp"
+                    android:onClick="user_login"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in"
+                    android:layout_gravity="center"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginRight="45dp"
+                    android:textColor="#ffffff"
+                    android:id = "@+id/tvSignUp"
+                    />
+            </FrameLayout>
         </LinearLayout>
     </FrameLayout>
 </RelativeLayout>

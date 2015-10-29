@@ -12,16 +12,31 @@
         android:src = "@drawable/user_profiler_introduction"
         android:layout_gravity="top|center|bottom" />
 
-    <Button
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text = "@string/allow_profiling"
+        android:id="@+id/flUserProfileConnector"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="40sp"
-        android:onClick="user_profiling_starter"
-        android:id="@+id/button5" />
-
-
+        android:layout_marginBottom="20dp"
+        >
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="user_profiling_starter"
+            android:background="@drawable/button_user_profile_starter"
+            android:alpha="0.2"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="45dp"
+            android:id="@+id/btnUserProfilingStarter"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/allow_profiling"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:id = "@+id/tvUserProfilingStarter"
+            />
+    </FrameLayout>
 </RelativeLayout>
