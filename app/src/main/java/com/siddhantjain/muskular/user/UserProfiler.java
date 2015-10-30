@@ -53,21 +53,23 @@ public class UserProfiler extends FragmentActivity {
         public Fragment getItem(int i) {
             switch(i){
                 case 0:
-                    return new Gender();
+                    return new Name();
                 case 1:
-                    return new Goal();
+                    return new Gender();
                 case 2:
-                    return new Proficiency();
+                    return new Goal();
                 case 3:
+                    return new Proficiency();
+                case 4:
                     return new Biostats();
                 default:
-                    return new Gender();
+                    return new Name();
             }
         }
 
         @Override
         public int getCount() {
-            return 4;
+            return 5;
         }
 
         @Override
