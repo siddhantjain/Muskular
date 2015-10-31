@@ -5,4 +5,14 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        //hint color And Label Color in False State
+        <item name="android:textColorHint">#2b334f</item>
+        <item name="android:textSize">45sp</item>
+        //Label color in True State And Bar Color False And True State
+        <item name="colorAccent">#000000</item>
+        <item name="colorControlNormal">#2b334f</item>
+        <item name="colorControlActivated">#2b334f</item>
+    </style>
+
 </resources>
