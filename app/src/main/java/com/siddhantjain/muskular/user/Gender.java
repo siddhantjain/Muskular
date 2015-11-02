@@ -21,7 +21,6 @@ import com.siddhantjain.muskular.utils.DataStore;
  * Created by siddhaja on 8/26/2015.
  */
 public class Gender extends Fragment implements View.OnClickListener {
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,11 +48,8 @@ public class Gender extends Fragment implements View.OnClickListener {
             case R.id.imgFemale:
                 ((ImageView)getView().findViewById(R.id.imgFemale)).setImageDrawable(getResources().getDrawable(
                         R.drawable.user_female_selected, getActivity().getTheme()));
-                //((ImageView)getView().findViewById(R.id.imgMale)).setColorFilter(0xffff00ff, PorterDuff.Mode.MULTIPLY);
                 ((ImageView)getView().findViewById(R.id.imgMale)).setImageDrawable(getResources().getDrawable(
                         R.drawable.user_male, getActivity().getTheme()));
-                //((ImageView)getView().findViewById(R.id.imgFemale)).setColorFilter( 0xffff0000, PorterDuff.Mode.ADD);
-                //((ImageView)getView().findViewById(R.id.imgMale)).setColorFilter( 0xff000000, PorterDuff.Mode.DARKEN);
                 editor.putString(getString(R.string.user_gender), "Female");
                 editor.commit();
                 break;
