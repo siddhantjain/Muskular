@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.siddhantjain.muskular.PlanGrid;
@@ -42,6 +41,7 @@ public class UserProfiler extends FragmentActivity {
         mQuestionsPagerAdapter =  new QuestionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.questionsPager);
         mViewPager.setAdapter(mQuestionsPagerAdapter);
+
     }
 
     public class QuestionsPagerAdapter extends FragmentPagerAdapter {
@@ -72,6 +72,7 @@ public class UserProfiler extends FragmentActivity {
             return 5;
         }
 
+
         @Override
         public CharSequence getPageTitle(int position) {
             return "Q: "+(position + 1);
@@ -96,7 +97,6 @@ public class UserProfiler extends FragmentActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -105,6 +105,7 @@ public class UserProfiler extends FragmentActivity {
             return false;
         return true;
     }
+
 
     public void planGridActivityConnector(View view){
         SharedPreferences sharedPref = DataStore.getUserProfileStore(getApplicationContext());
@@ -150,6 +151,8 @@ public class UserProfiler extends FragmentActivity {
             Intent intent = new Intent(this,PlanGrid.class);
             startActivity(intent);
         }
+
+
     }
 
 

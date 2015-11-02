@@ -29,4 +29,5 @@ dependencies {
     //    compile 'org.parceler:parceler:0.2.13'
     compile 'com.opencsv:opencsv:3.5'
     compile 'com.android.support:design:22.2.0'
+    compile 'com.viewpagerindicator:library:2.4.1@aar.jar'
 }
