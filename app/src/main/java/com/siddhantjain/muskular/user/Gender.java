@@ -27,7 +27,7 @@ public class Gender extends Fragment implements View.OnClickListener {
         View rootView = inflater.inflate(R.layout.fragment_gender, container, false);
         ((ImageView) rootView.findViewById(R.id.imgMale)).setOnClickListener(this);
         ((ImageView) rootView.findViewById(R.id.imgFemale)).setOnClickListener(this);
-        ((TextView) rootView.findViewById(R.id.tvNextStepProficiency)).setOnClickListener(this);
+        ((TextView) rootView.findViewById(R.id.tvNextStepHeight)).setOnClickListener(this);
         return rootView;
     }
 
@@ -53,7 +53,7 @@ public class Gender extends Fragment implements View.OnClickListener {
                 editor.putString(getString(R.string.user_gender), "Female");
                 editor.commit();
                 break;
-            case R.id.tvNextStepProficiency:
+            case R.id.tvNextStepHeight:
                 ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.questionsPager);
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
                 break;

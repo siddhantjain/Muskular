@@ -36,7 +36,6 @@ public class Name extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.tvNextStepGender:
                 editor.putString(getString(R.string.user_name), mUserScreenName.getText().toString());
-                System.out.println(mUserScreenName.getText().toString());
                 editor.commit();
                 ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.questionsPager);
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1);

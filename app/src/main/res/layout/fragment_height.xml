@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:background="@drawable/user_profiler_height"
+    >
+
+    <com.siddhantjain.muskular.VerticalSeekBar
+        android:id="@+id/vsbHeightSelector"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="bottom"
+        android:max="50"
+        android:progress="25"
+        />
+    <TextView
+        android:id="@+id/tvNextStepWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Next Step"
+        android:textColor="#ffffff"
+        android:textSize = "25dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id = "@+id/tvHeightValueSelected"
+        android:textColor="#ffffff"
+        android:text = "150"
+        android:textSize="50dp"
+        android:layout_above="@+id/tvNextStepWeight"
+        android:layout_alignRight="@+id/tvNextStepWeight"
+        android:layout_alignEnd="@+id/tvNextStepWeight"
+        android:layout_marginBottom="114dp" />
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:textColor="#ffffff"
+        android:text = "cm"
+        android:textSize="25dp"
+        android:gravity="bottom"
+        android:layout_alignTop="@+id/tvHeightValueSelected"
+        android:layout_toRightOf="@+id/tvHeightValueSelected"
+        android:layout_toEndOf="@+id/tvHeightValueSelected" />
+
+</RelativeLayout>

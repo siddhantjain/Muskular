@@ -57,7 +57,7 @@ public class UserProfiler extends FragmentActivity {
                 case 1:
                     return new Gender();
                 case 2:
-                    return new Goal();
+                    return new Height();
                 case 3:
                     return new Proficiency();
                 case 4:
