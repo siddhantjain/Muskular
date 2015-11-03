@@ -32,7 +32,7 @@
         android:layout_height="100dp"
         android:id = "@+id/tvHeightValueSelected"
         android:textColor="#ffffff"
-        android:text = "150"
+        android:text = "175"
         android:textSize="50dp"
         android:layout_above="@+id/tvNextStepWeight"
         android:layout_alignRight="@+id/tvNextStepWeight"

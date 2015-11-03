@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:seekarc="http://schemas.android.com/tools"
+    android:background="@drawable/user_profiler_weight">
+    <com.siddhantjain.muskular.SeekArc
+        android:id="@+id/saWeightSelector"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:padding="30dp"
+        seekarc:rotation="180"
+        seekarc:startAngle="30"
+        seekarc:sweepAngle="180"
+        seekarc:touchInside="true"
+        seekarc:max = "170"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/tvNextStepAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Next Step"
+        android:textColor="#ffffff"
+        android:textSize = "25dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id = "@+id/tvWeightValueSelected"
+        android:textColor="#ffffff"
+        android:text = "30"
+        android:textSize="50dp"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="56dp"
+        android:layout_above="@+id/tvNextStepAge"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:textColor="#ffffff"
+        android:text = "KG"
+        android:textSize="25dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/textView"
+        android:layout_alignBottom="@+id/tvWeightValueSelected"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

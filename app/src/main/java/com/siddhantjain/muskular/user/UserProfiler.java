@@ -59,7 +59,7 @@ public class UserProfiler extends FragmentActivity {
                 case 2:
                     return new Height();
                 case 3:
-                    return new Proficiency();
+                    return new Weight();
                 case 4:
                     return new Biostats();
                 default:
