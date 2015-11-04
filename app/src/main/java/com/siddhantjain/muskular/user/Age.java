@@ -26,6 +26,7 @@ import java.util.Calendar;
  */
 public class Age extends Fragment implements View.OnClickListener {
     private TextView yearOfBirth;
+    private int selectedYearOfBirth;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,11 +44,12 @@ public class Age extends Fragment implements View.OnClickListener {
 
     public void show(View v)
     {
-
+        selectedYearOfBirth = 1993;
         final Dialog d = new Dialog(v.getContext());
         d.setTitle("NumberPicker");
         d.setContentView(R.layout.dialog_year_picker);
         final NumberPicker np = (NumberPicker) d.findViewById(R.id.npYearPicker);
+        final Button btnSubmit = (Button) d.findViewById(R.id.btnSubmitBirthYear);
         np.setMaxValue(1997);
         np.setMinValue(1900);
         np.setValue(1993);
@@ -55,7 +57,15 @@ public class Age extends Fragment implements View.OnClickListener {
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                yearOfBirth.setText(String.valueOf(newVal));
+                selectedYearOfBirth = newVal;
+            }
+        });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yearOfBirth.setText(String.valueOf(selectedYearOfBirth));
+                d.dismiss();
             }
         });
 
