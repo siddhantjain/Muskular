@@ -61,7 +61,9 @@ public class UserProfiler extends FragmentActivity {
                 case 3:
                     return new Weight();
                 case 4:
-                    return new Biostats();
+                    return new Age();
+                case 5:
+                    return new Goal();
                 default:
                     return new Name();
             }
@@ -69,7 +71,7 @@ public class UserProfiler extends FragmentActivity {
 
         @Override
         public int getCount() {
-            return 5;
+            return 6;
         }
 
 

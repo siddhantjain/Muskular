@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/user_profiler_age">
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:tint="@color/progress_white"
+        android:src = "@drawable/calendar"
+        android:id="@+id/imageView"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tvNextStepGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Next Step"
+        android:textColor="#ffffff"
+        android:textSize = "25dp"
+        android:clickable="true"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:text = "1993"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:textColor="@color/progress_white"
+        android:id="@+id/tvYearOfBirth"
+
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
