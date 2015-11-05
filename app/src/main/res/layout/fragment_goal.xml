@@ -2,36 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="What are you aiming at?"
-        android:textSize="20dp"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="135dp" />
+    android:background="@drawable/user_profiler_goal">
+
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/thumb_transform_male"
+        android:src="@drawable/user_profiler_goal3"
         android:id="@+id/imgTransform"
+        android:tint = "@color/progress_white"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/thumb_lose_fat_male"
+        android:src="@drawable/user_profiler_goal1"
+        android:tint = "@color/progress_white"
         android:id="@+id/imgLoseFat"
         android:layout_alignTop="@+id/imgTransform"
         android:layout_centerHorizontal="true" />
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/thumb_build_muscle_male"
+        android:src="@drawable/user_profiler_goal2"
+        android:tint = "@color/progress_white"
         android:id="@+id/imgGainMuscle"
         android:layout_alignTop="@+id/imgTransform"
         android:layout_toRightOf="@+id/imgLoseFat"
@@ -42,6 +36,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Transform"
+        android:textColor="@color/progress_white"
         android:background="?android:attr/selectableItemBackground"
         android:layout_below="@+id/imgTransform"
         android:layout_alignParentLeft="true"
@@ -51,6 +46,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Lose Fat"
+        android:textColor="@color/progress_white"
         android:background="?android:attr/selectableItemBackground"
         android:id="@+id/btnLoseFat"
         android:layout_alignTop="@+id/btnTransform"
@@ -60,11 +56,22 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Gain Muscle"
+        android:textColor="@color/progress_white"
         android:background="?android:attr/selectableItemBackground"
         android:id="@+id/btnGainMuscle"
         android:layout_alignTop="@+id/btnLoseFat"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="All done. Show me some plans!"
+        android:textColor="@color/progress_white"
+        android:onClick="planGridActivityConnector"
+        android:background="?android:attr/selectableItemBackground"
+        android:id="@+id/btnNextStepPlanSelector"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

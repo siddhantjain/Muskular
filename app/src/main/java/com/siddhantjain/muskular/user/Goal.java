@@ -25,31 +25,40 @@ public class Goal extends Fragment implements View.OnClickListener {
         ((Button) rootView.findViewById(R.id.btnLoseFat)).setOnClickListener(this);
         ((Button) rootView.findViewById(R.id.btnTransform)).setOnClickListener(this);
         ((Button) rootView.findViewById(R.id.btnGainMuscle)).setOnClickListener(this);
+        ((ImageView) rootView.findViewById(R.id.imgLoseFat)).setOnClickListener(this);
+        ((ImageView) rootView.findViewById(R.id.imgGainMuscle)).setOnClickListener(this);
+        ((ImageView) rootView.findViewById(R.id.imgTransform)).setOnClickListener(this);
+
         return rootView;
     }
     public void onClick(View v) {
         SharedPreferences sharedPref = DataStore.getUserProfileStore(getActivity());
         SharedPreferences.Editor editor = sharedPref.edit();
         switch (v.getId()) {
+            case R.id.imgTransform:
             case R.id.btnTransform:
-                ((ImageView)getView().findViewById(R.id.imgTransform)).setColorFilter(Color.argb(50, 0, 0, 0));
-                ((ImageView)getView().findViewById(R.id.imgLoseFat)).setColorFilter(Color.argb(0,0,0,0));
-                ((ImageView)getView().findViewById(R.id.imgGainMuscle)).setColorFilter(Color.argb(0,0,0,0));
+                ((ImageView)getView().findViewById(R.id.imgTransform)).setColorFilter(Color.argb(0, 0, 0, 0));
+                ((ImageView)getView().findViewById(R.id.imgLoseFat)).setColorFilter(Color.argb(255,255,255,255));
+                ((ImageView)getView().findViewById(R.id.imgGainMuscle)).setColorFilter(Color.argb(255,255,255,255));
                 editor.putString(getString(R.string.user_goal), "Transform");
                 editor.commit();
-
                 break;
+
+
+            case R.id.imgLoseFat:
             case R.id.btnLoseFat:
-                ((ImageView)getView().findViewById(R.id.imgTransform)).setColorFilter(Color.argb(0, 0, 0, 0));
-                ((ImageView)getView().findViewById(R.id.imgLoseFat)).setColorFilter(Color.argb(50,0,0,0));
-                ((ImageView)getView().findViewById(R.id.imgGainMuscle)).setColorFilter(Color.argb(0,0,0,0));
+                ((ImageView)getView().findViewById(R.id.imgTransform)).setColorFilter(Color.argb(255, 255,255,255));
+                ((ImageView)getView().findViewById(R.id.imgLoseFat)).setColorFilter(Color.argb(0,0,0,0));
+                ((ImageView)getView().findViewById(R.id.imgGainMuscle)).setColorFilter(Color.argb(255,255,255,255));
                 editor.putString(getString(R.string.user_goal), "Lose");
                 editor.commit();
                 break;
+
+            case R.id.imgGainMuscle:
             case R.id.btnGainMuscle:
-                ((ImageView)getView().findViewById(R.id.imgGainMuscle)).setColorFilter(Color.argb(50,0,0,0));
-                ((ImageView)getView().findViewById(R.id.imgLoseFat)).setColorFilter(Color.argb(0,0,0,0));
-                ((ImageView)getView().findViewById(R.id.imgTransform)).setColorFilter(Color.argb(0,0,0,0));
+                ((ImageView)getView().findViewById(R.id.imgGainMuscle)).setColorFilter(Color.argb(0,0,0,0));
+                ((ImageView)getView().findViewById(R.id.imgLoseFat)).setColorFilter(Color.argb(255,255,255,255));
+                ((ImageView)getView().findViewById(R.id.imgTransform)).setColorFilter(Color.argb(255,255,255,255));
                 editor.putString(getString(R.string.user_goal), "Gain");
                 editor.commit();
                 break;
