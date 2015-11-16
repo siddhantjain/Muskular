@@ -119,8 +119,13 @@ public class UserProfiler extends FragmentActivity {
         String level = sharedPref.getString(getString(R.string.user_level), "not found");
         String yob = sharedPref.getString(getString(R.string.user_yob), "not found");
 
+        Intent intent_temp = new Intent(this,PlanGrid.class);
+        startActivity(intent_temp);
+
         if (allUserProfilerInfoExists(gender, goal, height, weight, level, yob))
         {
+
+            //Tweak below code to write all values properly
             System.out.println(gender);
             UserProfilerRequest userProfilerRequest = new UserProfilerRequest();
             userProfilerRequest.setGender(gender);
@@ -147,7 +152,7 @@ public class UserProfiler extends FragmentActivity {
                     Toast.makeText(getApplicationContext(), errorMessage,
                             Toast.LENGTH_LONG).show();
                     //TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
-                   // bad_credentials.setVisibility(View.VISIBLE);
+                    // bad_credentials.setVisibility(View.VISIBLE);
                 }
             });
             Intent intent = new Intent(this,PlanGrid.class);

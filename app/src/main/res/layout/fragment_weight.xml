@@ -9,7 +9,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        android:padding="30dp"
+        android:padding="70dp"
         seekarc:rotation="180"
         seekarc:startAngle="30"
         seekarc:sweepAngle="180"

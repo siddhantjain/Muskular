@@ -62,6 +62,11 @@ public class Goal extends Fragment implements View.OnClickListener {
                 editor.putString(getString(R.string.user_goal), "Gain");
                 editor.commit();
                 break;
+
+            case R.id.btnNextStepPlanSelector:
+                ((UserProfiler)getActivity()).planGridActivityConnector(getView().findViewById(R.id.btnNextStepPlanSelector));
         }
     }
+
+
 }

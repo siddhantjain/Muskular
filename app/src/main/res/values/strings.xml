@@ -74,6 +74,14 @@
     <!-- User Profiler strings-->
     <string name = "allow_profiling">Let\'s start</string>
     <string name = "user_name">Enter Your Name here</string>
+
+    <!-- Diet Plan Viewer Strings -->
+    <string name = "calories_text"> Calories to be consumed </string>
+    <string name = "carbs_text"> gms Carbohydrates to be consumed </string>
+    <string name = "proteins_text"> gms Proteins to be consumed </string>
+    <string name = "search_hint"> Search food items</string>
+    <string name = "search_title"> food finder </string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

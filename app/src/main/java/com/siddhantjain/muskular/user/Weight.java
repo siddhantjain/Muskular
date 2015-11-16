@@ -46,21 +46,9 @@ public class Weight extends Fragment implements View.OnClickListener {
                 System.out.println(progress);
             }
         });
-        /*CircularSeekBar weightControl = (CircularSeekBar) rootView.findViewById(R.id.saWeightSelector);
-        weightControl.setBackgroundColor(Color.parseColor("#ef9523"));
 
 
-        weightControl.setSeekBarChangeListener(new CircularSeekBar.OnSeekChangeListener() {
-            int progressChanged = 0;
-            int minimumValue = 30;
 
-            @Override
-            public void onProgressChange(CircularSeekBar view, int newProgress) {
-                progressChanged = view.getProgress() + minimumValue;
-                weightTextValue.setText(String.valueOf(progressChanged));
-            }
-
-        });*/
 
         return rootView;
     }

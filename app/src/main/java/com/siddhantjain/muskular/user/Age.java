@@ -46,7 +46,7 @@ public class Age extends Fragment implements View.OnClickListener {
     {
         selectedYearOfBirth = 1993;
         final Dialog d = new Dialog(v.getContext());
-        d.setTitle("NumberPicker");
+        d.setTitle("Select your year of birth");
         d.setContentView(R.layout.dialog_year_picker);
         final NumberPicker np = (NumberPicker) d.findViewById(R.id.npYearPicker);
         final Button btnSubmit = (Button) d.findViewById(R.id.btnSubmitBirthYear);
