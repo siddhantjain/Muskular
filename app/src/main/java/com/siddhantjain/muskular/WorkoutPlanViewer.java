@@ -8,14 +8,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,8 @@ public class WorkoutPlanViewer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_plan_viewer);
         lvExercise = (ListView) findViewById(R.id.lvTempList);
+
+
         List<List<String>> exercises_list = new ArrayList<List<String>>();
         List<String> exercise_name_list = new ArrayList<String>();
         List<String> exercise_reps_list = new ArrayList<String>();
