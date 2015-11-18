@@ -38,27 +38,20 @@ public class WorkoutPlanViewer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout_plan_viewer);
         lvExercise = (ListView) findViewById(R.id.lvTempList);
+        List<ExerciseInfo> ExerciseInfoList = new ArrayList<ExerciseInfo>();
 
 
         List<List<String>> exercises_list = new ArrayList<List<String>>();
-        List<String> exercise_name_list = new ArrayList<String>();
-        List<String> exercise_reps_list = new ArrayList<String>();
-        List<String> exercise_sets_list = new ArrayList<String>();
         exercises_list = readCsv(getApplicationContext());
         dayOfThePlan = getDayOfThePlan();
         for(int i=0;i< (exercises_list.get(3)).size();i++){
             if( (Integer.parseInt(exercises_list.get(3).get(i)))== dayOfThePlan){
-                exercise_name_list.add(exercises_list.get(0).get(i)
-                        + "\n" + exercises_list.get(1).get(i) + "X"
-                        + exercises_list.get(2).get(i) );
+                ExerciseInfoList.add(new ExerciseInfo(exercises_list.get(0).get(i),Integer.valueOf(exercises_list.get(1).get(i))));
             }
         }
-        ArrayAdapter<String> arrayAdapterExercise = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                exercise_name_list );
 
-        lvExercise.setAdapter(arrayAdapterExercise);
+        lvExercise.setAdapter(new ExerciseInfoArrayAdapter(getApplicationContext(), R.id.lvTempList, ExerciseInfoList));
+
         lvExercise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
