@@ -4,8 +4,10 @@ package com.siddhantjain.muskular;
  * Created by siddhaja on 11/18/2015.
  */
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,6 +21,10 @@ import java.util.List;
 
 public class ExerciseInfoArrayAdapter extends ArrayAdapter<ExerciseInfo> {
 
+    private AdapterCallback mAdapterCallback;
+    public static interface AdapterCallback {
+        void onMethodCallback(String exercise_name);
+    }
     private static class ViewHolder {
         TextView textView;
         ProgressBar progressBar;
@@ -28,10 +34,16 @@ public class ExerciseInfoArrayAdapter extends ArrayAdapter<ExerciseInfo> {
 
 
     private static final String TAG = ExerciseInfoArrayAdapter.class.getSimpleName();
+    private Context mContext;
 
     public ExerciseInfoArrayAdapter(Context context, int textViewResourceId,
                                     List<ExerciseInfo> objects) {
         super(context, textViewResourceId, objects);
+        try {
+            this.mAdapterCallback = ((AdapterCallback) context);
+        } catch (ClassCastException e) {
+            throw new ClassCastException("Activity must implement AdapterCallback.");
+        }
     }
 
     @Override
@@ -72,6 +84,19 @@ public class ExerciseInfoArrayAdapter extends ArrayAdapter<ExerciseInfo> {
                 (info.getExerciseState() == ExerciseInfo.ExerciseState.PARTIALLY_COMPLETE));
         final Button button = holder.button;
         final ProgressBar progressBar = holder.progressBar;
+        final TextView exerciseName = holder.textView;
+        holder.textView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    mAdapterCallback.onMethodCallback(info.getExercisename());
+                } catch (ClassCastException exception) {
+                    // do something
+                }
+
+            }
+        });
         holder.button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
