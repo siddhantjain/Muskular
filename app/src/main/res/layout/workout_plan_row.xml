@@ -29,7 +29,7 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/progress_bar_exercise"
+                android:progressDrawable="@drawable/progress_bar_proteins"
                 android:layout_gravity="center"
                 android:layout_weight="0.8"/>
             <Button
