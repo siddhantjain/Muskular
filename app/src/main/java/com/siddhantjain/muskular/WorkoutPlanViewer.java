@@ -30,9 +30,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkoutPlanViewer extends AppCompatActivity {
+public class WorkoutPlanViewer extends AppCompatActivity implements ExerciseInfoArrayAdapter.AdapterCallback{
     private ListView lvExercise;
     private int dayOfThePlan;
+    private ExerciseInfoArrayAdapter mStepsAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,25 +50,27 @@ public class WorkoutPlanViewer extends AppCompatActivity {
                 ExerciseInfoList.add(new ExerciseInfo(exercises_list.get(0).get(i),Integer.valueOf(exercises_list.get(1).get(i))));
             }
         }
-
-        lvExercise.setAdapter(new ExerciseInfoArrayAdapter(getApplicationContext(), R.id.lvTempList, ExerciseInfoList));
+        this.mStepsAdapter = new ExerciseInfoArrayAdapter(this, R.id.lvTempList, ExerciseInfoList);
+        lvExercise.setAdapter(mStepsAdapter);
 
         lvExercise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                final AlertDialog alertDialog = new AlertDialog.Builder(WorkoutPlanViewer.this).create(); //Read Update
-                alertDialog.setTitle("Exercise Steps");
-                //TODO: SID to figure out how to find the exercise name from the item clicked
-                String exerciseSteps = getExerciseSteps("DUMMY");
-                alertDialog.setMessage(exerciseSteps);
-                alertDialog.show();  //<-- See This
             }
         });
     }
 
+    @Override
+    public void onMethodCallback(String exerciseName){
+        final android.app.AlertDialog alertDialog = new android.app.AlertDialog.Builder(WorkoutPlanViewer.this).create(); //Read Update
+        alertDialog.setTitle("Exercise Steps");
+        //TODO: SID to figure out how to find the exercise name from the item clicked
+        String exerciseSteps = "Exercise Steps here";
+        alertDialog.setMessage(exerciseName + " steps to be populated here");
+        alertDialog.show();  //<-- See This
 
-
+    }
     // TODO: 10/23/2015 AKI TO ADD SERVER CALL
     private int getDayOfThePlan(){
         //insert code to get the required date
@@ -77,7 +80,7 @@ public class WorkoutPlanViewer extends AppCompatActivity {
 
     //// TODO: 10/23/2015 AKI TO ADD SERVER CALL
     private String getExerciseSteps(String ExerciseName){
-        //insert code to get the required date
+        //insert code to get the required steps
         String temporaryReturnVar = "Exercise Steps to be read from DB";
         return temporaryReturnVar;
     }

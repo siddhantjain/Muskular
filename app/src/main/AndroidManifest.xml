@@ -62,7 +62,8 @@
         <activity
             android:name=".WorkoutPlanViewer"
             android:label="@string/title_activity_workout__plan"
-            android:parentActivityName=".Dashboard" >
+            android:parentActivityName=".Dashboard"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.siddhantjain.muskular.Dashboard" />

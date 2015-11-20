@@ -30,7 +30,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/progress_bar_exercise"
-                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_gravity="center"
                 android:layout_weight="0.8"/>
             <Button
                 android:id="@+id/btnRepLogger"
