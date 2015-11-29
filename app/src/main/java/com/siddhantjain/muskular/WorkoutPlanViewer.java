@@ -41,7 +41,6 @@ public class WorkoutPlanViewer extends AppCompatActivity implements ExerciseInfo
         lvExercise = (ListView) findViewById(R.id.lvTempList);
         List<ExerciseInfo> ExerciseInfoList = new ArrayList<ExerciseInfo>();
 
-
         List<List<String>> exercises_list = new ArrayList<List<String>>();
         exercises_list = readCsv(getApplicationContext());
         dayOfThePlan = getDayOfThePlan();
@@ -52,13 +51,6 @@ public class WorkoutPlanViewer extends AppCompatActivity implements ExerciseInfo
         }
         this.mStepsAdapter = new ExerciseInfoArrayAdapter(this, R.id.lvTempList, ExerciseInfoList);
         lvExercise.setAdapter(mStepsAdapter);
-
-        lvExercise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
     }
 
     @Override

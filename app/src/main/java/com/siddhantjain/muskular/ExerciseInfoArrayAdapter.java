@@ -6,6 +6,7 @@ package com.siddhantjain.muskular;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -85,6 +87,7 @@ public class ExerciseInfoArrayAdapter extends ArrayAdapter<ExerciseInfo> {
         final Button button = holder.button;
         final ProgressBar progressBar = holder.progressBar;
         final TextView exerciseName = holder.textView;
+        final LinearLayout exercise_row = (LinearLayout) row.findViewById(R.id.llExerciserow);
         holder.textView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +109,7 @@ public class ExerciseInfoArrayAdapter extends ArrayAdapter<ExerciseInfo> {
                     progressBar.setProgress(oldProgress+1);
                     info.setExerciseState(ExerciseInfo.ExerciseState.COMPLETE);
                     button.setEnabled(false);
+                    button.getBackground().setAlpha(50);
                     button.invalidate();
                 } else {
                     int oldProgress = info.getProgress();

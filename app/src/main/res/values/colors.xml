@@ -14,5 +14,10 @@
     <color name="progress_gray_dark">#FF383838</color>
     <color name="progress_white">#FFFFFFFF</color>
 
+    <!--Workout Planner Colors-->
+    <color name="plus_one">#0D7F00</color>
+    <color name="list_item_background">#ffc428</color>
+    <color name="exercise_name">#ffffff</color>
+
 
 </resources>

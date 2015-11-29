@@ -43,7 +43,6 @@ public class Weight extends Fragment implements View.OnClickListener {
                                           boolean fromUser) {
 
                 weightTextValue.setText(String.valueOf(progress+minimumValue));
-                System.out.println(progress);
             }
         });
 

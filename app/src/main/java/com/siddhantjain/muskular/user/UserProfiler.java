@@ -126,7 +126,7 @@ public class UserProfiler extends FragmentActivity {
         {
 
             //Tweak below code to write all values properly
-            System.out.println(gender);
+
             UserProfilerRequest userProfilerRequest = new UserProfilerRequest();
             userProfilerRequest.setGender(gender);
             userProfilerRequest.setYob(String.valueOf(yob));

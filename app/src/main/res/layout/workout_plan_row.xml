@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/border"
         android:layout_marginBottom="5dp"
         android:paddingBottom="10dp"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:background = "@drawable/border_exercise_row_bottom"
+        android:id="@+id/llExerciserow">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -18,7 +20,11 @@
                 android:id="@+id/tvExerciseName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EXERCISENAME" />
+                android:text="EXERCISENAME"
+                android:textColor="@color/exercise_name"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
@@ -29,14 +35,17 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:progressDrawable="@drawable/progress_bar_proteins"
+                android:progressDrawable="@drawable/progress_bar_exercise"
                 android:layout_gravity="center"
-                android:layout_weight="0.8"/>
+                android:layout_weight="0.8"
+                android:layout_marginLeft="10dp"/>
             <Button
                 android:id="@+id/btnRepLogger"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Log"
+                android:layout_width="45dp"
+                android:layout_height="35dp"
+                android:background="@drawable/one_plus"
+                android:backgroundTint="@color/plus_one"
+                android:layout_margin="10dp"
                 android:layout_weight="0.2"/>
         </LinearLayout>
     </LinearLayout>
