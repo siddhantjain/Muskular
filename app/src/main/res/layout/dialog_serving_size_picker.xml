@@ -1,10 +1,54 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="FOOD NAME"
+        android:layout_centerHorizontal="true"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/linearLayout">
+        <NumberPicker
+            android:id="@+id/npServingTypePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
 
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="X"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:paddingRight="5dp"
+            android:layout_margin="5dp"
+            />
+
+        <NumberPicker
+            android:id="@+id/npServingQuantPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
+    <Button
+        android:id = "@+id/btnSubmitServing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Serving"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+<!--
    <ListView
        android:id = "@+id/lvServingSizeSelector"
        android:layout_width="wrap_content"
-       android:layout_height="wrap_content"></ListView>
+       android:layout_height="wrap_content"></ListView> -->
 
 </RelativeLayout>
