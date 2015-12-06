@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +15,9 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,6 +29,7 @@ import com.siddhantjain.muskular.foodget.FoodServing;
 import com.siddhantjain.muskular.foodget.ServingSizeAdapter;
 import com.siddhantjain.muskular.foodsearch.FoodItem;
 import com.siddhantjain.muskular.foodsearch.SearchRowAdapter;
+import com.siddhantjain.muskular.utils.DataStore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,14 +48,19 @@ public class FoodContentSearch extends AppCompatActivity {
     private ListView mListView;
     private ListView mServingListView;
     private ArrayList<FoodServing> mServingItem;
+    private ArrayList<String> mServingDesc;
     private String mQuery;
-    private String mFatContent;
-    private String mProteinContent;
-    private String mCalorieContent;
-    private String mCarbsContent;
+    private double mFatContent;
+    private double mProteinContent;
+    private int mCalorieContent;
+    private double mCarbsContent;
     private String mTempFoodName;
     private String mTempServingDesc;
     private String mTempServingQuant;
+    private double mMetricServingAmount;
+    private String mMetricServingAmountUnit;
+    private int servingDescVal=0;
+    private int servingQuantVal=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +78,7 @@ public class FoodContentSearch extends AppCompatActivity {
     }
 
     private void listViewConfigurations() {
+        mServingDesc = new ArrayList<String>();
         mFatSecretGet = new FatSecretGet();
         mItem = new ArrayList<FoodItem>();
         mServingItem = new ArrayList<FoodServing>();
@@ -83,9 +93,16 @@ public class FoodContentSearch extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("position: " + position);
-                System.out.println("FoodName: " + mItem.get(position).getFoodDescription());
                 getFood(Long.valueOf(mItem.get(position).getID()));
+            }
+        });
+    }
+
+    private void servingGetter(ListView servingListView){
+        servingListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
             }
         });
     }
@@ -93,9 +110,15 @@ public class FoodContentSearch extends AppCompatActivity {
     private void getFood(final long id) {
         new AsyncTask<String, String, String>() {
             @Override
+            protected void onPreExecute() {
+                 mServingDesc.clear();
+                 mServingItem.clear();
+                 //mServingAdapter.notifyDataSetChanged();
+            }
+            @Override
             protected String doInBackground(String... arg0) {
                 JSONObject foodGet = mFatSecretGet.getFood(id);
-                System.out.println(foodGet);
+                //System.out.println(foodGet);
                 try {
                     if (foodGet != null) {
                         String tempFoodType = foodGet.getString("food_type");
@@ -103,19 +126,21 @@ public class FoodContentSearch extends AppCompatActivity {
                             mTempFoodName = foodGet.getString("food_name");
                             JSONObject servings = foodGet.getJSONObject("servings");
                             JSONArray serving = servings.getJSONArray("serving");
+                            JSONObject first_serving_item = serving.getJSONObject(0);
+                            mCalorieContent = first_serving_item.getInt("calories");
+                            mCarbsContent = first_serving_item.getDouble("carbohydrate");
+                            mProteinContent = first_serving_item.getDouble("protein");
+                            mFatContent = first_serving_item.getDouble("fat");
+                            String measurementQuantity = first_serving_item.getString("metric_serving_amount");
+                            mMetricServingAmountUnit = first_serving_item.getString("metric_serving_unit");
+                            String measurementMultiplier = first_serving_item.getString("number_of_units");
+                            mMetricServingAmount = Double.valueOf(measurementMultiplier) * Double.valueOf(measurementQuantity);
+                            mTempServingQuant = String.valueOf(mMetricServingAmount) + mMetricServingAmountUnit;
                             for(int i=0;i<serving.length();i++){
                                 JSONObject serving_item = serving.optJSONObject(i);
-                                System.out.println("Serving item: "+serving_item);
-                                mCalorieContent = serving_item.getString("calories");
-                                mCarbsContent = serving_item.getString("carbohydrate");
-                                mProteinContent = serving_item.getString("protein");
-                                mFatContent = serving_item.getString("fat");
+                                System.out.println("Serving item: " + serving_item);
                                 mTempServingDesc = serving_item.getString("serving_description");
-                                String measurementQuantity = serving_item.getString("metric_serving_amount");
-                                String measurementUnit = serving_item.getString("metric_serving_unit");
-                                String measurementMultiplier = serving_item.getString("number_of_units");
-                                Double tempProduct = Double.valueOf(measurementMultiplier) * Double.valueOf(measurementQuantity);
-                                mTempServingQuant = String.valueOf(tempProduct) + measurementUnit;
+                                mServingDesc.add(mTempServingDesc);
                                 mServingItem.add(new FoodServing(mTempFoodName, mTempServingDesc, mTempServingQuant,String.valueOf(id) ,
                                         mCalorieContent, mProteinContent, mCarbsContent, mFatContent));
                             }
@@ -125,18 +150,19 @@ public class FoodContentSearch extends AppCompatActivity {
                             JSONObject servings = foodGet.getJSONObject("servings");
                             JSONObject serving = servings.getJSONObject("serving");
                             System.out.println("Serving item: "+serving);
-                            mCalorieContent = serving.getString("calories");
-                            mCarbsContent = serving.getString("carbohydrate");
-                            mProteinContent = serving.getString("protein");
-                            mFatContent = serving.getString("fat");
+                            mCalorieContent = serving.getInt("calories");
+                            mCarbsContent = serving.getDouble("carbohydrate");
+                            mProteinContent = serving.getDouble("protein");
+                            mFatContent = serving.getDouble("fat");
                             mTempServingDesc = serving.getString("serving_description");
                             double measurementQuantity = serving.getDouble("metric_serving_amount");
-                            String measurementUnit = serving.getString("metric_serving_amount");
+                            mMetricServingAmountUnit = serving.getString("metric_serving_amount");
                             double measurementMultiplier = serving.getDouble("number_of_units");
-                            measurementQuantity = measurementQuantity * measurementMultiplier;
-                            mTempServingQuant = String.valueOf(measurementQuantity) + measurementUnit;
+                            mMetricServingAmount = measurementQuantity * measurementMultiplier;
+                            mTempServingQuant = String.valueOf(mMetricServingAmount) + mMetricServingAmountUnit;
                             mServingItem.add(new FoodServing(mTempFoodName, mTempServingDesc, mTempServingQuant,String.valueOf(id) ,
                                     mCalorieContent, mProteinContent, mCarbsContent, mFatContent));
+                            mServingDesc.add(mTempServingDesc);
                         }
                     }
 
@@ -149,11 +175,6 @@ public class FoodContentSearch extends AppCompatActivity {
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
-                /*
-                final Dialog servingDialog = new Dialog(FoodContentSearch.this);
-                servingDialog.show();
-                servingDialog.setContentView(R.layout.dialog_serving_size_picker);
-                */
                 AlertDialog.Builder servingDialog = new AlertDialog.Builder(FoodContentSearch.this);
                 LayoutInflater inflater = FoodContentSearch.this.getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.dialog_serving_size_picker, null);
@@ -162,12 +183,57 @@ public class FoodContentSearch extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "No Items Containing Your Search", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    mServingListView = (ListView) dialogView.findViewById(R.id.lvServingSizeSelector);
-                    if (mServingListView!=null) {
-                        mServingListView.setAdapter(mServingAdapter);
+                    final NumberPicker mNpServingQuant = (NumberPicker) dialogView.findViewById(R.id.npServingQuantPicker);
+                    NumberPicker mNpServingDesc = (NumberPicker) dialogView.findViewById(R.id.npServingTypePicker);
+                    Button btnSubmitServing = (Button) dialogView.findViewById(R.id.btnSubmitServing);
+                    //mServingListView = (ListView) dialogView.findViewById(R.id.lvServingSizeSelector);
+                    if (btnSubmitServing!=null) {
+                        //mServingListView.setAdapter(mServingAdapter);
                         servingDialog.show();
-                        servingDialog.setTitle("Select your serving Size");
-                        mServingAdapter.notifyDataSetChanged();
+                        mNpServingQuant.setMaxValue(100);
+                        mNpServingQuant.setMinValue(1);
+                        mNpServingDesc.setMaxValue(mServingDesc.size() - 1);
+                        mNpServingDesc.setMinValue(0);
+                        mNpServingDesc.setDisplayedValues(mServingDesc.toArray(new String[mServingDesc.size()]));
+                        mNpServingDesc.setWrapSelectorWheel(true);
+                        mNpServingDesc.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                            @Override
+                            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                                servingDescVal = newVal;
+                            }
+                        });
+                        mNpServingQuant.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                            @Override
+                            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                                servingQuantVal = newVal;
+                            }
+                        });
+
+                        btnSubmitServing.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                int pos = 0;
+                                for (; pos < mServingItem.size(); pos++) {
+                                    //System.out.println("LHS: " + mServingItem.get(pos).getServingDescription());
+                                    //System.out.println("Serving Desc Val: " + servingDescVal);
+                                    //System.out.println(mServingDesc);
+                                    //System.out.println("RHS: " + mServingDesc.get(servingDescVal));
+                                    if (mServingItem.get(pos).getServingDescription().equals(mServingDesc.get(servingDescVal)))
+                                        break;
+                                }
+                                mCarbsContent = (mServingItem.get(pos).getCarbohydrates() * (((double) servingQuantVal)));
+                                mProteinContent = (mServingItem.get(pos).getProteins() * (((double) servingQuantVal)));
+                                mFatContent = (mServingItem.get(pos).getFats() * (((double) servingQuantVal)));
+                                mCalorieContent = (mServingItem.get(pos).getCalories() * servingQuantVal);
+                                final SharedPreferences sharedPref = DataStore.getUserProfileStore(getBaseContext());
+                                final SharedPreferences.Editor editor = sharedPref.edit();
+                                int tempIntValue;
+                                int tempDoubleValue;
+                                System.out.println(mCalorieContent + " " + mCarbsContent + " " + mProteinContent + " " + mFatContent);
+                                finish();
+                                //System.out.println("multiplier" + servingQuantVal);
+                                //System.out.println(mCalorieContent + " " + mCarbsContent + " " + mProteinContent + " " + mFatContent);
+                            }
+                        });
                     }
                     else{
                         Toast.makeText(getBaseContext(), "Couldn't find the listView", Toast.LENGTH_SHORT).show();

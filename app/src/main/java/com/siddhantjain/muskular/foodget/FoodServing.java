@@ -11,45 +11,45 @@ public class FoodServing {
     private String FOOD_SERVING_DESCRIPTION;
     private String FOOD_SERVING_QUANTITY;
     private String FOOD_ID;
-    private String calories;
-    private String proteins;
-    private String fats;
-    private String carbohydrates;
+    private int calories;
+    private double proteins;
+    private double fats;
+    private double carbohydrates;
 
-    public String getCalories() {
+    public int getCalories() {
         return calories;
     }
 
-    public void setCalories(String calories) {
+    public void setCalories(int calories) {
         this.calories = calories;
     }
 
-    public String getProteins() {
+    public double getProteins() {
         return proteins;
     }
 
-    public void setProteins(String proteins) {
+    public void setProteins(double proteins) {
         this.proteins = proteins;
     }
 
-    public String getFats() {
+    public double getFats() {
         return fats;
     }
 
-    public void setFats(String fats) {
+    public void setFats(double fats) {
         this.fats = fats;
     }
 
-    public String getCarbohydrates() {
+    public double getCarbohydrates() {
         return carbohydrates;
     }
 
-    public void setCarbohydrates(String carbohydrates) {
+    public void setCarbohydrates(double carbohydrates) {
         this.carbohydrates = carbohydrates;
     }
 
     public FoodServing(String food_name, String food_serving_description, String food_serving_quantity, String food_id,
-    String calories, String proteins, String carbohydrates, String fats) {
+                       int calories, double proteins, double carbohydrates, double fats) {
         super();
         this.FOOD_NAME = food_name;
         this.FOOD_SERVING_DESCRIPTION = food_serving_description;
@@ -58,6 +58,7 @@ public class FoodServing {
         this.carbohydrates = carbohydrates;
         this.proteins = proteins;
         this.fats = fats;
+        this.calories=calories;
     }
 
     public String getID() {
