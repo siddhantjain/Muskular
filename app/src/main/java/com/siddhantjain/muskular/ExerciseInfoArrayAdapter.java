@@ -28,7 +28,8 @@ public class ExerciseInfoArrayAdapter extends ArrayAdapter<ExerciseInfo> {
         void onMethodCallback(String exercise_name);
     }
     private static class ViewHolder {
-        TextView textView;
+        TextView textViewTitle;
+        TextView textViewTarget;
         ProgressBar progressBar;
         Button button;
         ExerciseInfo info;
@@ -62,7 +63,8 @@ public class ExerciseInfoArrayAdapter extends ArrayAdapter<ExerciseInfo> {
             row = inflater.inflate(R.layout.workout_plan_row, parent, false);
 
             holder = new ViewHolder();
-            holder.textView = (TextView) row.findViewById(R.id.tvExerciseName);
+            holder.textViewTitle = (TextView) row.findViewById(R.id.tvExerciseName);
+            holder.textViewTarget = (TextView) row.findViewById(R.id.tvExerciseTarget);
             holder.progressBar = (ProgressBar) row.findViewById(R.id.pbExerciseProgress);
             holder.button = (Button)row.findViewById(R.id.btnRepLogger);
             holder.info = info;
@@ -70,14 +72,13 @@ public class ExerciseInfoArrayAdapter extends ArrayAdapter<ExerciseInfo> {
             row.setTag(holder);
         } else {
             holder = (ViewHolder) row.getTag();
-
             holder.info.setProgressBar(null);
             holder.info = info;
             holder.info.setProgressBar(holder.progressBar);
         }
 
-        holder.textView.setText(info.getExercisename());
-        holder.textView.setTextColor(Color.parseColor("#000000"));
+        holder.textViewTitle.setText(info.getExercisename());
+        holder.textViewTarget.setText("Target: " + String.valueOf(info.getmExerciseSets()) + " Sets");
         holder.progressBar.setProgress(info.getProgress());
         holder.progressBar.setMax(info.getmExerciseSets());
         info.setProgressBar(holder.progressBar);
@@ -86,9 +87,9 @@ public class ExerciseInfoArrayAdapter extends ArrayAdapter<ExerciseInfo> {
                 (info.getExerciseState() == ExerciseInfo.ExerciseState.PARTIALLY_COMPLETE));
         final Button button = holder.button;
         final ProgressBar progressBar = holder.progressBar;
-        final TextView exerciseName = holder.textView;
+        final TextView exerciseName = holder.textViewTitle;
         final LinearLayout exercise_row = (LinearLayout) row.findViewById(R.id.llExerciserow);
-        holder.textView.setOnClickListener(new OnClickListener() {
+        holder.textViewTitle.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 

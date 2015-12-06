@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EXERCISENAME"
-                android:textColor="@color/exercise_name"
+                android:textColor="@color/cs_blue"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"/>
@@ -48,5 +48,13 @@
                 android:layout_margin="10dp"
                 android:layout_weight="0.2"/>
         </LinearLayout>
+        <TextView
+            android:id="@+id/tvExerciseTarget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text= "Target: 3 sets"
+            android:layout_gravity="right"
+            android:textColor="@color/cs_blue"
+            android:layout_marginRight="55dp"/>
     </LinearLayout>
 </RelativeLayout>

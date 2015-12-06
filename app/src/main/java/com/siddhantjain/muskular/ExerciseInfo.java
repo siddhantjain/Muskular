@@ -13,8 +13,8 @@ public class ExerciseInfo {
     }
     private volatile ExerciseState mExerciseState = ExerciseState.NOT_STARTED;
     private final String mExercisename;
-    private volatile Integer mProgress;
-    private final Integer mExerciseSets;
+    private volatile int mProgress;
+    private final int mExerciseSets;
     private volatile ProgressBar mProgressBar;
 
 
@@ -41,7 +41,7 @@ public class ExerciseInfo {
         return mExerciseState;
     }
 
-    public Integer getProgress() {
+    public int getProgress() {
         return mProgress;
     }
 
@@ -49,7 +49,7 @@ public class ExerciseInfo {
         this.mProgress = progress;
     }
 
-    public Integer getmExerciseSets() {
+    public int getmExerciseSets() {
         return mExerciseSets;
     }
 

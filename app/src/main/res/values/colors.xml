@@ -6,6 +6,16 @@
     <color name="rounded_container_border">#3b3f44</color>
     <color name="light_gray_header_color">#646663</color>
 
+    <!--Color Scheme colors-->
+    <color name = "cs_blue">#2b334f</color>
+    <color name = "cs_blue_light">#687bbf</color>
+    <color name = "cs_orange">#ef9523</color>
+    <color name = "cs_orange_light">#ffc428</color>
+    <color name = "cs_yellow">#f6e107</color>
+    <color name = "cs_yellow_light">#f6efab</color>
+    <color name = "cs_pink">#bd4061</color>
+    <color name = "cs_pink_light">#f5537f</color>
+
     <!--Welcome Screen colors-->
     <color name = "bad_credentials">#FF0000</color>
 
@@ -16,8 +26,8 @@
 
     <!--Workout Planner Colors-->
     <color name="plus_one">#0D7F00</color>
-    <color name="list_item_background">#ffc428</color>
-    <color name="exercise_name">#ffffff</color>
+    <color name="list_item_background">#ffffff</color>
+    <color name="exercise_name">#000000</color>
 
 
 </resources>
