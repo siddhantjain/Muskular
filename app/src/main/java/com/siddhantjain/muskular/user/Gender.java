@@ -42,16 +42,18 @@ public class Gender extends Fragment implements View.OnClickListener {
                 //((ImageView)getView().findViewById(R.id.imgMale)).setColorFilter(0xffff00ff, PorterDuff.Mode.MULTIPLY);
                 ((ImageView)getView().findViewById(R.id.imgFemale)).setImageDrawable(getResources().getDrawable(
                         R.drawable.user_female, getActivity().getTheme()));
-                editor.putString(getString(R.string.user_gender), "Male");
-                editor.commit();
+//                editor.putString(getString(R.string.user_gender), "Male");
+//                editor.commit();
+                DataStore.setUserGender(String.valueOf("Male"));
                 break;
             case R.id.imgFemale:
                 ((ImageView)getView().findViewById(R.id.imgFemale)).setImageDrawable(getResources().getDrawable(
                         R.drawable.user_female_selected, getActivity().getTheme()));
                 ((ImageView)getView().findViewById(R.id.imgMale)).setImageDrawable(getResources().getDrawable(
                         R.drawable.user_male, getActivity().getTheme()));
-                editor.putString(getString(R.string.user_gender), "Female");
-                editor.commit();
+//                editor.putString(getString(R.string.user_gender), "Female");
+//                editor.commit();
+                DataStore.setUserGender(String.valueOf("Female"));
                 break;
             case R.id.tvNextStepHeight:
                 ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.questionsPager);

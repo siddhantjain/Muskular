@@ -19,6 +19,7 @@ import com.siddhantjain.muskular.utils.DataStore;
 public class Weight extends Fragment implements View.OnClickListener {
     TextView weightTextValue;
     private SeekArc mSeekArc;
+    int finalWeight;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,14 +42,10 @@ public class Weight extends Fragment implements View.OnClickListener {
             @Override
             public void onProgressChanged(SeekArc seekArc, int progress,
                                           boolean fromUser) {
-
+                finalWeight = progress+minimumValue;
                 weightTextValue.setText(String.valueOf(progress+minimumValue));
             }
         });
-
-
-
-
         return rootView;
     }
     @Override
@@ -57,6 +54,7 @@ public class Weight extends Fragment implements View.OnClickListener {
         SharedPreferences.Editor editor = sharedPref.edit();
         switch (v.getId()) {
             case R.id.tvNextStepAge:
+                DataStore.setUserWeight(String.valueOf(finalWeight));
                 ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.questionsPager);
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
                 break;

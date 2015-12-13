@@ -7,11 +7,10 @@ import lombok.Data;
  */
 @Data
 public class UserProfilerRequest {
-    String userId;
     String gender;
     String goal;
     String height;
     String weight;
-    String level;
+//    String level;
     String yob;
 }

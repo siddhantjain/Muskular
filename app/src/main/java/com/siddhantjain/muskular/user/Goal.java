@@ -40,8 +40,9 @@ public class Goal extends Fragment implements View.OnClickListener {
                 ((ImageView)getView().findViewById(R.id.imgTransform)).setColorFilter(Color.argb(0, 0, 0, 0));
                 ((ImageView)getView().findViewById(R.id.imgLoseFat)).setColorFilter(Color.argb(255,255,255,255));
                 ((ImageView)getView().findViewById(R.id.imgGainMuscle)).setColorFilter(Color.argb(255,255,255,255));
-                editor.putString(getString(R.string.user_goal), "Transform");
-                editor.commit();
+//                editor.putString(getString(R.string.user_goal), "Transform");
+//                editor.commit();
+                DataStore.setUserGoal(String.valueOf("Transform"));
                 break;
 
 
@@ -50,8 +51,9 @@ public class Goal extends Fragment implements View.OnClickListener {
                 ((ImageView)getView().findViewById(R.id.imgTransform)).setColorFilter(Color.argb(255, 255,255,255));
                 ((ImageView)getView().findViewById(R.id.imgLoseFat)).setColorFilter(Color.argb(0,0,0,0));
                 ((ImageView)getView().findViewById(R.id.imgGainMuscle)).setColorFilter(Color.argb(255,255,255,255));
-                editor.putString(getString(R.string.user_goal), "Lose");
-                editor.commit();
+//                editor.putString(getString(R.string.user_goal), "Lose");
+//                editor.commit();
+                DataStore.setUserGoal(String.valueOf("Lose"));
                 break;
 
             case R.id.imgGainMuscle:
@@ -59,8 +61,9 @@ public class Goal extends Fragment implements View.OnClickListener {
                 ((ImageView)getView().findViewById(R.id.imgGainMuscle)).setColorFilter(Color.argb(0,0,0,0));
                 ((ImageView)getView().findViewById(R.id.imgLoseFat)).setColorFilter(Color.argb(255,255,255,255));
                 ((ImageView)getView().findViewById(R.id.imgTransform)).setColorFilter(Color.argb(255,255,255,255));
-                editor.putString(getString(R.string.user_goal), "Gain");
-                editor.commit();
+//                editor.putString(getString(R.string.user_goal), "Gain");
+//                editor.commit();
+                DataStore.setUserGoal(String.valueOf("Transform"));
                 break;
 
             case R.id.btnNextStepPlanSelector:

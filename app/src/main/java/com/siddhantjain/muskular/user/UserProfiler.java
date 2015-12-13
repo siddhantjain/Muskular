@@ -102,27 +102,38 @@ public class UserProfiler extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private boolean allUserProfilerInfoExists(String gender, String goal, String height, String weight, String level, String yob) {
-        if (gender.equalsIgnoreCase("not found") ||  goal.equalsIgnoreCase("not found") || weight.equalsIgnoreCase("not found") || height.equalsIgnoreCase("not found") || level.equalsIgnoreCase("not found") || yob.equalsIgnoreCase("not found"))
+    private boolean allUserProfilerInfoExists(String gender, String goal, String height, String weight, String yob) {
+//        if (gender.equalsIgnoreCase("not found") ||  goal.equalsIgnoreCase("not found") || weight.equalsIgnoreCase("not found") || height.equalsIgnoreCase("not found") || yob.equalsIgnoreCase("not found"))
+        if(gender == null || goal == null || height == null || weight == null || yob == null)
             return false;
         return true;
     }
 
 
     public void planGridActivityConnector(View view){
-        SharedPreferences sharedPref = DataStore.getUserProfileStore(getApplicationContext());
-        String gender = sharedPref.getString(getString(R.string.user_gender), "not found");
-        String user_id = sharedPref.getString(getString(R.string.user_id), "not found");
-        String goal = sharedPref.getString(getString(R.string.user_goal), "not found");
-        String height = sharedPref.getString(getString(R.string.user_height), "not found");
-        String weight = sharedPref.getString(getString(R.string.user_weight), "not found");
-        String level = sharedPref.getString(getString(R.string.user_level), "not found");
-        String yob = sharedPref.getString(getString(R.string.user_yob), "not found");
+        Log.v("USER ID DATASTORE",DataStore.getUserId());
+//        SharedPreferences sharedPref = DataStore.getUserProfileStore(getApplicationContext());
+//        String gender = sharedPref.getString(getString(R.string.user_gender), "not found");
+//        String user_id = sharedPref.getString(getString(R.string.user_id), "not found");
+//        String goal = sharedPref.getString(getString(R.string.user_goal), "not found");
+//        String height = sharedPref.getString(getString(R.string.user_height), "not found");
+//        String weight = sharedPref.getString(getString(R.string.user_weight), "not found");
+//        String level = sharedPref.getString(getString(R.string.user_level), "not found");
+//        String yob = sharedPref.getString(getString(R.string.user_yob), "not found");
 
-        Intent intent_temp = new Intent(this,PlanGrid.class);
-        startActivity(intent_temp);
+        String gender = DataStore.getUserGender();
+        String user_id = DataStore.getUserId();
+        String goal = DataStore.getUserGoal();
+        String height = DataStore.getUserHeight();
+        String weight = DataStore.getUserWeight();
+        //String level = sharedPref.getString(getString(R.string.user_level), "not found");
+        String yob = DataStore.getUserYob();
 
-        if (allUserProfilerInfoExists(gender, goal, height, weight, level, yob))
+
+//        Intent intent_temp = new Intent(this,PlanGrid.class);
+//        startActivity(intent_temp);
+
+        if (allUserProfilerInfoExists(gender, goal, height, weight, yob))
         {
 
             //Tweak below code to write all values properly
@@ -133,33 +144,35 @@ public class UserProfiler extends FragmentActivity {
             userProfilerRequest.setGoal(goal);
             userProfilerRequest.setHeight(height);
             userProfilerRequest.setWeight(weight);
-            userProfilerRequest.setLevel(level);
-            userProfilerRequest.setUserId(user_id);
+//            userProfilerRequest.setLevel(level);
             MuskAPI APIGuy = APIClient.getAPIClient();
             APIGuy.profileUser(user_id, userProfilerRequest, new APICallback<UserProfilerResponse, UserProfilerResponseData>(this) {
                 @Override
                 public void onSuccess(UserProfilerResponseData data) {
-                    SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
-                    SharedPreferences.Editor SPEditor = sharedPreferences.edit();
-                    SPEditor.putString(String.valueOf(R.string.uwya_id),data.getUwyaId());
-                    SPEditor.putString(String.valueOf(R.string.uwyw_id),data.getUwywId());
-                    SPEditor.apply();
+                    if(data.getUserId().equalsIgnoreCase(DataStore.getUserId())){
+                        DataStore.setUwyaId(data.getUwyaId());
+                        DataStore.setUwywId(data.getUwywId());
+                        DataStore.setEligiblePrograms(data.getEligiblePrograms());
+                        Intent intent = new Intent(getApplicationContext(), PlanGrid.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Integrity Error", Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 @Override
                 public void onFailure(String errorMessage) {
                     Log.v("USER PROFILER RESPONSE", errorMessage);
-                    Toast.makeText(getApplicationContext(), errorMessage,
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), errorMessage,Toast.LENGTH_LONG).show();
                     //TextView bad_credentials = (TextView) findViewById(R.id.tvBadCredentialsMessage);
                     // bad_credentials.setVisibility(View.VISIBLE);
                 }
             });
-            Intent intent = new Intent(this,PlanGrid.class);
-            startActivity(intent);
         }
-
-
+        else {
+            Log.v("USER PROFILER","ALL INFO NOT EXISTS");
+        }
     }
 
 

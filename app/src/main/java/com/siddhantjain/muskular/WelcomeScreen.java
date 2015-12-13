@@ -37,9 +37,13 @@ public class WelcomeScreen extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
-        String userId = sharedPreferences.getString("user_id", null);
-        if(userId != null){
+
+        DataStore.init(getApplicationContext());
+
+//        SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
+//        String userId = sharedPreferences.getString("user_id", null);
+
+        if(DataStore.getUserId() != null){
             Intent intent = new Intent(this,Dashboard.class);
             startActivity(intent);
             WelcomeScreen.this.finish();
@@ -182,23 +186,24 @@ public class WelcomeScreen extends Activity{
 
             ///*
             // Temporary code. Remove once API calls are to server
-            Intent intent = new Intent(WelcomeScreen.this, UserProfilerConnector.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+//            Intent intent = new Intent(WelcomeScreen.this, UserProfilerConnector.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(intent);
             //code ends here
             //*/
             APIGuy.createUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
                 @Override
                 public void onSuccess(UserAuth data) {
                     Log.v("CREATE USER RESPONSE - ", data.toString());
-                    SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
-                    SharedPreferences.Editor SPEditor = sharedPreferences.edit();
-                    if (sharedPreferences.getString("user_id", null) == null) {
-                        SPEditor.putString("user_id", data.getUserId());
-                        SPEditor.putString("last_section_completed", data.getLastSectionCompleted());
-                        SPEditor.commit();
-                        Log.v("Shared Preferences", sharedPreferences.getString("user_id", "no user id"));
-                    }
+//                    SharedPreferences sharedPreferences = DataStore.getUserProfileStore(getApplicationContext());
+//                    SharedPreferences.Editor SPEditor = sharedPreferences.edit();
+//                    if (sharedPreferences.getString("user_id", null) == null) {
+//                        SPEditor.putString("user_id", data.getUserId());
+//                        SPEditor.putString("last_section_completed", data.getLastSectionCompleted());
+//                        SPEditor.commit();
+//                        Log.v("Shared Preferences", sharedPreferences.getString("user_id", "no user id"));
+//                    }
+                    DataStore.setUserId(data.getUserId());
                     Intent intent = new Intent(WelcomeScreen.this, UserProfilerConnector.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);

@@ -64,6 +64,7 @@
     <string name= "user_id">user_id</string>
     <string name= "uwya_id">uwya_id</string>
     <string name= "uwyw_id">uwyw_id</string>
+    <string name= "eligible_programs">eligible_programs</string>
 
     <!--Welcome Screen Strings-->
     <string name="sign_in">Log in</string>

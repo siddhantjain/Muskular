@@ -20,6 +20,7 @@ import com.siddhantjain.muskular.utils.DataStore;
  */
 public class Height extends Fragment implements View.OnClickListener {
     TextView heightTextValue;
+    int finalHeight;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,8 +45,10 @@ public class Height extends Fragment implements View.OnClickListener {
 
             public void onStopTrackingTouch(SeekBar seekBar) {
                 heightTextValue.setText(String.valueOf(progressChanged));
-                editor.putString(getString(R.string.user_height), String.valueOf(progressChanged));
-                editor.commit();
+//                editor.putString(getString(R.string.user_height), String.valueOf(progressChanged));
+//                editor.commit();
+                finalHeight = progressChanged;
+
             }
         });
         return rootView;
@@ -57,6 +60,7 @@ public class Height extends Fragment implements View.OnClickListener {
         SharedPreferences.Editor editor = sharedPref.edit();
         switch (v.getId()) {
             case R.id.tvNextStepWeight:
+                DataStore.setUserHeight(String.valueOf(finalHeight));
                 ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.questionsPager);
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
                 break;

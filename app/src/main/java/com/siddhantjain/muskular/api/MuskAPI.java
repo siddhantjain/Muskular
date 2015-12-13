@@ -1,5 +1,7 @@
 package com.siddhantjain.muskular.api;
 
+import com.siddhantjain.muskular.models.ProgramSelectResponse;
+import com.siddhantjain.muskular.models.ProgramSelectResponseData;
 import com.siddhantjain.muskular.models.UserAuth;
 import com.siddhantjain.muskular.models.UserAuthResponse;
 import com.siddhantjain.muskular.models.UserCreateRequest;
@@ -12,6 +14,7 @@ import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
+import retrofit.http.Query;
 
 /**
  * Created by akash.jatangi on 9/19/15.
@@ -28,4 +31,7 @@ public interface MuskAPI {
 
     @POST("/user/profile_add/{user_id}/")
     void profileUser(@Path("user_id") String userid,@Body UserProfilerRequest userProfilerRequest,APICallback<UserProfilerResponse,UserProfilerResponseData> response);
+
+    @GET("/user/program_select/{user_id}/")
+    void programSelect(@Path("user_id") String userid, @Query("pid") String pid, @Query("uwya_id") String uwya_id, @Query("uwyw_id") String uwuw_id, APICallback<ProgramSelectResponse,ProgramSelectResponseData> response);
 }

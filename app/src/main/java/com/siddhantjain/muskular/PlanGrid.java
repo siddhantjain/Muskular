@@ -3,21 +3,34 @@ package com.siddhantjain.muskular;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class PlanGrid extends AppCompatActivity {
+import com.siddhantjain.muskular.api.APICallback;
+import com.siddhantjain.muskular.api.APIClient;
+import com.siddhantjain.muskular.api.MuskAPI;
+import com.siddhantjain.muskular.models.ProgramMetadata;
+import com.siddhantjain.muskular.models.ProgramSelectResponse;
+import com.siddhantjain.muskular.models.ProgramSelectResponseData;
+import com.siddhantjain.muskular.utils.DataStore;
 
+import java.util.List;
+
+public class PlanGrid extends AppCompatActivity {
+    List<ProgramMetadata> eligigiblePrograms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         /* Insert code to get plans from database by sending user preferences*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_grid);
-
+        eligigiblePrograms = DataStore.getEligiblePrograms();
+        Log.v("ELIGIBLE_PROGRAMS", eligigiblePrograms.toString());
     }
 
     @Override
@@ -42,7 +55,23 @@ public class PlanGrid extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void update_profile(View view){
-        Intent intent = new Intent(this,Dashboard.class);
-        startActivity(intent);
+        ProgramMetadata chosenProgramMetadata = eligigiblePrograms.get(0);
+        Log.v("PROGRAMSELECT", chosenProgramMetadata.toString());
+        Log.v("PROGRAMSELECT", chosenProgramMetadata.getId());
+        MuskAPI APIGuy = APIClient.getAPIClient();
+        APIGuy.programSelect(DataStore.getUserId(), chosenProgramMetadata.getId(), DataStore.getUwyaId(), DataStore.getUwywId(), new APICallback<ProgramSelectResponse, ProgramSelectResponseData>(getApplicationContext()) {
+            @Override
+            public void onSuccess(ProgramSelectResponseData data) {
+                Log.v("PROGRAMSELECT", data.toString());
+                Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+
+            }
+        });
+
     }
 }

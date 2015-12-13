@@ -1,5 +1,7 @@
 package com.siddhantjain.muskular.models;
 
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -10,4 +12,5 @@ public class UserProfilerResponseData {
     String userId;
     String uwyaId;
     String uwywId;
+    List<ProgramMetadata> eligiblePrograms;
 }

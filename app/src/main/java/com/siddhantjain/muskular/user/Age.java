@@ -79,6 +79,7 @@ public class Age extends Fragment implements View.OnClickListener {
         SharedPreferences.Editor editor = sharedPref.edit();
         switch (v.getId()) {
             case R.id.tvNextStepGoal:
+                DataStore.setUserYob(String.valueOf(selectedYearOfBirth));
                 ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.questionsPager);
                 viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
                 break;

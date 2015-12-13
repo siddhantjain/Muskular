@@ -19,7 +19,9 @@ public class APIClient {
 
 
     public static void initialise(){
-        String baseURL = "http://192.168.0.108:8000/mmapp";
+        String baseURL = "http://52.32.34.8/mmapp";
+        //52.32.34.8
+        //192.168.0.105:8000
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'")
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
