@@ -12,4 +12,8 @@ public class Trainer {
     String firstName;
     String lastName;
     String id;
+
+    public String getNickName() {
+        return nickName;
+    }
 }

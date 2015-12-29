@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="3"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id = "@+id/ivProgramImage"
+        android:src="@drawable/thumb_beginner_male"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
+        <TextView
+            android:id = "@+id/tvProgramName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PROGRAM NAME"
+            />
+        <TextView
+            android:id = "@+id/tvProgramAuthorName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AUTHOR NAME"
+            />
+        <TextView
+            android:id = "@+id/tvProgramTimeCommitment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TIME COMMITMENT"
+            />
+        <TextView
+            android:id = "@+id/tvProgramDifficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DIFFICULTY"
+            />
+    </LinearLayout>
+</LinearLayout>

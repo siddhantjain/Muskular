@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.siddhantjain.muskular.api.APICallback;
@@ -23,14 +25,24 @@ import com.siddhantjain.muskular.utils.DataStore;
 import java.util.List;
 
 public class PlanGrid extends AppCompatActivity {
-    List<ProgramMetadata> eligigiblePrograms;
+    List<ProgramMetadata> eligiblePrograms;
+    ListView programList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         /* Insert code to get plans from database by sending user preferences*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_grid);
-        eligigiblePrograms = DataStore.getEligiblePrograms();
-        Log.v("ELIGIBLE_PROGRAMS", eligigiblePrograms.toString());
+        eligiblePrograms = DataStore.getEligiblePrograms();
+        programList = (ListView) findViewById(R.id.lvProgramList);
+        ProgramInfoArrayAdapter adapter = new ProgramInfoArrayAdapter(this,eligiblePrograms);
+        programList.setAdapter(adapter);
+        programList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                update_profile(view);
+            }
+        });
+        Log.v("ELIGIBLE_PROGRAMS", eligiblePrograms.toString());
     }
 
     @Override
@@ -55,7 +67,7 @@ public class PlanGrid extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void update_profile(View view){
-        ProgramMetadata chosenProgramMetadata = eligigiblePrograms.get(0);
+        ProgramMetadata chosenProgramMetadata = eligiblePrograms.get(0);
         Log.v("PROGRAMSELECT", chosenProgramMetadata.toString());
         Log.v("PROGRAMSELECT", chosenProgramMetadata.getId());
         MuskAPI APIGuy = APIClient.getAPIClient();

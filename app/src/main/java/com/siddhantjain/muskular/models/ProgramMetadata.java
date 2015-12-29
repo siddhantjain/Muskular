@@ -11,4 +11,16 @@ public class ProgramMetadata {
     String difficulty;
     String id;
     Trainer author;
+
+    public String getDaysPerWeek(){return daysPerWeek;}
+    public String getDifficulty() {
+        return difficulty;
+    }
+    public String getId() {
+        return id;
+    }
+    public Trainer getTrainer() {
+        return author;
+    }
+
 }

@@ -119,13 +119,11 @@ public class WelcomeScreen extends Activity{
             userCreateRequest.setEmailId(email);
             userCreateRequest.setPassword(pass);
             MuskAPI APIGuy = APIClient.getAPIClient();
-            ///*
-            //temporary code. Remove after api calls are from server
+
             Intent intent = new Intent(WelcomeScreen.this, Dashboard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            //end here
-            //*/
+
             APIGuy.authenticateUser(userCreateRequest, new APICallback<UserAuthResponse, UserAuth>(this) {
                 @Override
                 public void onSuccess(UserAuth data) {
