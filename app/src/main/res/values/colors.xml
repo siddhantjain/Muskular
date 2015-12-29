@@ -24,10 +24,13 @@
     <color name="progress_gray_dark">#FF383838</color>
     <color name="progress_white">#FFFFFFFF</color>
 
-    <!--Workout Planner Colors-->
+    <!--Workout lister Colors-->
     <color name="plus_one">#0D7F00</color>
     <color name="list_item_background">#ffffff</color>
     <color name="exercise_name">#000000</color>
 
+    <!--Dashboard Colors-->
+    <color name="button_text_color">#ffffff</color>
+    <color name="tweet_text_color">#ffffff</color>
 
 </resources>

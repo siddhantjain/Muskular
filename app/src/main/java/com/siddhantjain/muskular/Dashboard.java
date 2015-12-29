@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,14 +47,23 @@ public class Dashboard extends AppCompatActivity {
         // Close the drawer
         mDrawerLayout.closeDrawer(mDrawerPane);
     }
+    final static String twitterScreenName = "sichinain";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        //add fragment if this is the first instance when the activity is loaded
-        if(savedInstanceState==null){
-            addRssFragment();
+        AndroidNetworkUtility androidNetworkUtility = new AndroidNetworkUtility();
+        ListView tweetList = (ListView) findViewById(R.id.lvTweetList);
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.pbTweetRetrieval);
+        if (androidNetworkUtility.isConnected(this)) {
+            new TwitterAsyncTask().execute(twitterScreenName,tweetList, this, progressBar);
+        } else {
+            Log.v(TAG, "Network not Available!");
         }
+        //add fragment if this is the first instance when the activity is loaded
+       // if(savedInstanceState==null){
+         //   addRssFragment();
+        //}
 
         mNavItems.add(new NavItem("Macro Calculator", "Calories Counter!", R.drawable.weight));
         mNavItems.add(new NavItem("Talk to Expert", "Gagan Gyaan", R.drawable.user));
@@ -80,7 +91,7 @@ public class Dashboard extends AppCompatActivity {
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
         RssFragment fragment = new RssFragment();
-        transaction.add(R.id.fragment_container, fragment);
+      //  transaction.add(R.id.fragment_container, fragment);
         transaction.commit();
     }
 

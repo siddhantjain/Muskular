@@ -21,13 +21,16 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.0.0'
-    compile 'com.google.android.gms:play-services:7.8.0'
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
     provided 'org.projectlombok:lombok:1.12.6'
-    compile 'com.google.code.gson:gson:2.3'
     //    compile 'org.parceler:parceler:0.2.13'
+    compile 'com.viewpagerindicator:library:2.4.1@aar.jar'
+    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.google.android.gms:play-services:8.3.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.google.code.gson:gson:2.3'
     compile 'com.opencsv:opencsv:3.5'
     compile 'com.android.support:design:22.2.0'
-    compile 'com.viewpagerindicator:library:2.4.1@aar.jar'
+    compile 'com.google.android.gms:play-services-ads:8.3.0'
+    compile 'com.google.android.gms:play-services-identity:8.3.0'
+    compile 'com.android.support:cardview-v7:22.0.0'
 }
