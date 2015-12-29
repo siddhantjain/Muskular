@@ -3,18 +3,11 @@
 /**
  * Created by siddhaja on 12/26/2015.
  */
-import android.app.ListActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.os.AsyncTask;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.siddhantjain.muskular.TwitterAPI;
-import com.siddhantjain.muskular.TwitterTweet;
 
 import java.util.ArrayList;
 
